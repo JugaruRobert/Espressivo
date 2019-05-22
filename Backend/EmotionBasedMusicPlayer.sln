@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.WebAPI", "EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.WebAPI.csproj", "{05DA09A6-2959-4D84-9B44-2070F2B9212C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.Business", "EmotionBasedMusicPlayer.Business\EmotionBasedMusicPlayer.Business.csproj", "{970A0CD3-939F-43DE-A5B8-117C50EA8DF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.DAL", "EmotionBasedMusicPlayer.DAL\EmotionBasedMusicPlayer.DAL.csproj", "{CD32A0B9-193A-4725-85AD-549DEE6C4D8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.Library", "EmotionBasedMusicPlayer.Library\EmotionBasedMusicPlayer.Library.csproj", "{B96C7963-DE5F-44BE-AD16-2EBBB84F3B4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.Models", "EmotionBasedMusicPlayer.Models\EmotionBasedMusicPlayer.Models.csproj", "{59CFDBF0-516E-4AB4-BF12-67CD73A2C65E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05DA09A6-2959-4D84-9B44-2070F2B9212C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DA09A6-2959-4D84-9B44-2070F2B9212C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DA09A6-2959-4D84-9B44-2070F2B9212C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DA09A6-2959-4D84-9B44-2070F2B9212C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{970A0CD3-939F-43DE-A5B8-117C50EA8DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{970A0CD3-939F-43DE-A5B8-117C50EA8DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{970A0CD3-939F-43DE-A5B8-117C50EA8DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{970A0CD3-939F-43DE-A5B8-117C50EA8DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD32A0B9-193A-4725-85AD-549DEE6C4D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD32A0B9-193A-4725-85AD-549DEE6C4D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD32A0B9-193A-4725-85AD-549DEE6C4D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD32A0B9-193A-4725-85AD-549DEE6C4D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96C7963-DE5F-44BE-AD16-2EBBB84F3B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96C7963-DE5F-44BE-AD16-2EBBB84F3B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96C7963-DE5F-44BE-AD16-2EBBB84F3B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96C7963-DE5F-44BE-AD16-2EBBB84F3B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CFDBF0-516E-4AB4-BF12-67CD73A2C65E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CFDBF0-516E-4AB4-BF12-67CD73A2C65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CFDBF0-516E-4AB4-BF12-67CD73A2C65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CFDBF0-516E-4AB4-BF12-67CD73A2C65E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5705823-7E43-4111-8A42-0F4EF99A741B}
+	EndGlobalSection
+EndGlobal

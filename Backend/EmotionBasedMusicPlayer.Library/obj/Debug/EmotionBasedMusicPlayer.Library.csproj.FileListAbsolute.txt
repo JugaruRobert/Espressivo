@@ -1,0 +1,14 @@
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\bin\Debug\EmotionBasedMusicPlayer.Library.dll.config
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\bin\Debug\EmotionBasedMusicPlayer.Library.dll
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\bin\Debug\EmotionBasedMusicPlayer.Library.pdb
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.csprojAssemblyReference.cache
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.csproj.CoreCompileInputs.cache
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.dll
+C:\Users\Robert\Desktop\Licenta-master\EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.pdb
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\bin\Debug\EmotionBasedMusicPlayer.Library.dll.config
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\bin\Debug\EmotionBasedMusicPlayer.Library.dll
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\bin\Debug\EmotionBasedMusicPlayer.Library.pdb
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.csprojAssemblyReference.cache
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.csproj.CoreCompileInputs.cache
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.dll
+C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Library\obj\Debug\EmotionBasedMusicPlayer.Library.pdb
