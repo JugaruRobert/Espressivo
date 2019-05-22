@@ -26,3 +26,17 @@ C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.DAL\obj\D
 C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.csproj.CopyComplete
 C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.dll
 C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.pdb
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.DAL.dll.config
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.DAL.dll
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.DAL.pdb
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.Library.dll
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.Models.dll
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.Library.pdb
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.Library.dll.config
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.Models.pdb
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\bin\Debug\EmotionBasedMusicPlayer.Models.dll.config
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.csprojAssemblyReference.cache
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.csproj.CoreCompileInputs.cache
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.csproj.CopyComplete
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.dll
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.DAL\obj\Debug\EmotionBasedMusicPlayer.DAL.pdb

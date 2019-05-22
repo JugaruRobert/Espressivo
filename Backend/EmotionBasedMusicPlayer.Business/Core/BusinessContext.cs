@@ -1,6 +1,7 @@
 ﻿using EmotionBasedMusicPlayer.Business.Models;
 using EmotionBasedMusicPlayer.Business.Utils;
 using EmotionBasedMusicPlayer.Models;
+using EmotionBasedMusicPlayer.Models.Recommendations;
 using Newtonsoft.Json.Linq;
 using PinguiniiGalactici.NewAcademicInfo.DAL.Core;
 using System;
@@ -19,6 +20,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
         private DALContext _dalContext;
         private RecommendationBusiness _recommendationBusiness;
         private EmotionRecognitionBusiness _emotionRecognitionBusiness;
+        private YoutubeBusiness _youtubeBusiness;
         private ArtistBusiness _artistBusiness;
         private GenreBusiness _genreBusiness;
         private UserBusiness _userBusiness;
@@ -65,6 +67,18 @@ namespace EmotionBasedMusicPlayer.Business.Core
                     _recommendationBusiness = new RecommendationBusiness(this);
                 }
                 return _recommendationBusiness;
+            }
+        }
+
+        public YoutubeBusiness YoutubeBusiness
+        {
+            get
+            {
+                if (_youtubeBusiness == null)
+                {
+                    _youtubeBusiness = new YoutubeBusiness(this);
+                }
+                return _youtubeBusiness;
             }
         }
 
@@ -142,13 +156,41 @@ namespace EmotionBasedMusicPlayer.Business.Core
         #endregion
 
         #region Methods
-        public JObject GetRecommendations()
+        public List<Recommendation> GetRecommendations()
         {
             string imagePath = "C:\\Users\\Robert\\Desktop\\2.jpg";
             byte[] byteData = ImageUtils.GetImageAsByteArray(imagePath);
+
             FaceAttributes emotionData = EmotionRecognitionBusiness.AnalyzeImage(new ByteArrayContent(byteData));
             TuneableTrack track = new TuneableTrack(emotionData);
-            return RecommendationBusiness.GetRecommendations(genreSeed: new List<string>() { "pop" });
+            JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(genreSeed: new List<string>() { "pop" });
+            return GetVideoUrls(recommendationsJSON);
+        }
+
+        public List<Recommendation> GetVideoUrls(JObject recommendationsJSON)
+        {
+            List<Recommendation> recommendations = new List<Recommendation>();
+            foreach(var track in recommendationsJSON.SelectToken("tracks"))
+            {
+                Recommendation recommendation = new Recommendation();
+
+                string title = track.SelectToken("name")?.ToString();
+                if (String.IsNullOrEmpty(title))
+                    continue;
+                recommendation.Title = title;
+
+                foreach (var artist in track.SelectToken("artists"))
+                {
+                    string name = artist.SelectToken("name")?.ToString();
+                    if (String.IsNullOrEmpty(name))
+                        continue;
+                    recommendation.Artists.Add(name);
+                }
+
+                recommendation.Url = YoutubeBusiness.GetVideoUrl(recommendation.Artists,recommendation.Title);
+                recommendations.Add(recommendation);
+            }
+            return recommendations;
         }
         #endregion
 
@@ -166,6 +208,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
 
             DisposeBusinessObject(_recommendationBusiness);
             DisposeBusinessObject(_emotionRecognitionBusiness);
+            DisposeBusinessObject(_youtubeBusiness);
             DisposeBusinessObject(_artistBusiness);
             DisposeBusinessObject(_genreBusiness);
             DisposeBusinessObject(_userBusiness);

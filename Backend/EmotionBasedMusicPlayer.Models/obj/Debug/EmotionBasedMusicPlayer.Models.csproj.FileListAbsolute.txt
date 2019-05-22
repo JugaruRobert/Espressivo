@@ -12,3 +12,10 @@ C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Models\ob
 C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.csproj.CoreCompileInputs.cache
 C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.dll
 C:\Users\Robert\Desktop\Licenta-master\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.pdb
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\bin\Debug\EmotionBasedMusicPlayer.Models.dll.config
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\bin\Debug\EmotionBasedMusicPlayer.Models.dll
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\bin\Debug\EmotionBasedMusicPlayer.Models.pdb
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.csprojAssemblyReference.cache
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.csproj.CoreCompileInputs.cache
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.dll
+E:\Facultate\Licenta\Backend\EmotionBasedMusicPlayer.Models\obj\Debug\EmotionBasedMusicPlayer.Models.pdb

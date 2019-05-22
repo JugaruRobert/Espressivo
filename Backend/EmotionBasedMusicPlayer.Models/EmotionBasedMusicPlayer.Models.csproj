@@ -51,6 +51,7 @@
     <Compile Include="Genre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recommendations\AccessToken.cs" />
+    <Compile Include="Recommendations\Recommendation.cs" />
     <Compile Include="Recommendations\TuneableTrack.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserArtist.cs" />

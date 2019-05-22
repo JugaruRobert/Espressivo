@@ -13,6 +13,7 @@ using System.Runtime.Caching;
 using EmotionBasedMusicPlayer.Core;
 using Newtonsoft.Json.Linq;
 using EmotionBasedMusicPlayer.Models;
+using EmotionBasedMusicPlayer.Models.Recommendations;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
@@ -23,7 +24,7 @@ namespace EmotionBasedMusicPlayer.Controllers
         #region Methods
         [HttpGet]
         [Route("")]
-        public JObject GetRecommendations()
+        public List<Recommendation> GetRecommendations()
         {
             return BusinessContext.GetRecommendations();
         }
