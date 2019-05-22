@@ -1,0 +1,26 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    Nume smecher aici
+  </a>
+  <div class="nav navbar-nav navbar-right">
+    <i [matMenuTriggerFor]="menu" class="fas fa-user-circle" id="userLogo"></i>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openDialog()">
+        <mat-icon>perm_identity</mat-icon>
+        <span>Profile</span>
+      </button>
+      <div class="dropdown-divider"></div>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign out</span>
+      </button>
+    </mat-menu>
+  </div>
+</nav>
+<main class="main">
+  <div class="container-fluid animated fadeIn">
+      <div class="row">
+          <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
+      </div>
+  </div>
+</main>
