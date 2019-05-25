@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.WebAPI", "EmotionBasedMusicPlayer\EmotionBasedMusicPlayer.WebAPI.csproj", "{05DA09A6-2959-4D84-9B44-2070F2B9212C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD32A0B9-193A-4725-85AD-549DEE6C4D8A} = {CD32A0B9-193A-4725-85AD-549DEE6C4D8A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionBasedMusicPlayer.Business", "EmotionBasedMusicPlayer.Business\EmotionBasedMusicPlayer.Business.csproj", "{970A0CD3-939F-43DE-A5B8-117C50EA8DF8}"
 EndProject

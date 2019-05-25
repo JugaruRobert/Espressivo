@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EmotionBasedMusicPlayer.Business.ArtistBusiness">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAkAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ArtistBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.EmotionRecognitionBusiness">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>EmotionRecognitionBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.GenreBusiness">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAkAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>GenreBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.UserArtistBusiness">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAACAAAEAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>UserArtistBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.UserBusiness">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>UserBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.UserGenreBuisness">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAACAAAEAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>UserGenreBuisness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.YoutubeBusiness">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>YoutubeBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Core.BusinessContext" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ARAAAAAEAKAlQQABQEQEAIACAABAACIAAAAAGEAAIgA=</HashCode>
+      <FileName>Core\BusinessContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Core.BusinessObject">
+    <Position X="8.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\BusinessObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Core.RecommendationBusiness">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAIABAEAAAAAAAAAgAQAAAAAAQAAAAAAAQAA=</HashCode>
+      <FileName>RecommendationBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Client.EmotionRecognitionClient">
+    <Position X="22.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Client\EmotionRecognitionClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Utils.recommendation.RecommendationClient">
+    <Position X="22.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Client\RecommendationClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Utils.recommendation.RecommendationUrlBuilder">
+    <Position X="24.5" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAACAAAAAAAAQAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Utils\UrlBuilder\RecommendationUrlBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Utils.Client.YoutubeClient">
+    <Position X="22.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Client\YoutubeClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.Utils.ImageUtils">
+    <Position X="22.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\ImageUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Business.UrlBuilder.EmotionRecognitionUrlBuilder">
+    <Position X="24.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\UrlBuilder\EmotionRecognitionUrlBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

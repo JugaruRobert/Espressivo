@@ -158,13 +158,14 @@ namespace EmotionBasedMusicPlayer.Business.Core
         #region Methods
         public List<Recommendation> GetRecommendations()
         {
-            string imagePath = "C:\\Users\\Robert\\Desktop\\2.jpg";
-            byte[] byteData = ImageUtils.GetImageAsByteArray(imagePath);
+            //string imagePath = "C:\\Users\\Robert\\Desktop\\2.jpg";
+            //byte[] byteData = ImageUtils.GetImageAsByteArray(imagePath);
 
-            FaceAttributes emotionData = EmotionRecognitionBusiness.AnalyzeImage(new ByteArrayContent(byteData));
-            TuneableTrack track = new TuneableTrack(emotionData);
-            JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(genreSeed: new List<string>() { "pop" });
-            return GetVideoUrls(recommendationsJSON);
+            //FaceAttributes emotionData = EmotionRecognitionBusiness.AnalyzeImage(new ByteArrayContent(byteData));
+            //TuneableTrack track = new TuneableTrack(emotionData);
+            //JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(genreSeed: new List<string>() { "pop" });
+            //return GetVideoUrls(recommendationsJSON);
+            return GetTestRecommendations();
         }
 
         public List<Recommendation> GetVideoUrls(JObject recommendationsJSON)
@@ -187,9 +188,164 @@ namespace EmotionBasedMusicPlayer.Business.Core
                     recommendation.Artists.Add(name);
                 }
 
-                recommendation.Url = YoutubeBusiness.GetVideoUrl(recommendation.Artists,recommendation.Title);
+                foreach (var image in track.SelectToken("album.images"))
+                {
+                    recommendation.Images.Add(new AlbumImage()
+                    {
+                        Height = int.Parse(image.SelectToken("height").ToString()),
+                        Url = image.SelectToken("url").ToString(),
+                        Width = int.Parse(image.SelectToken("width").ToString())
+                    });
+                }
+                recommendation.VideoID = YoutubeBusiness.GetVideoUrl(recommendation.Artists,recommendation.Title);
                 recommendations.Add(recommendation);
             }
+            return recommendations;
+        }
+
+        public List<Recommendation> GetTestRecommendations()
+        {
+            List<Recommendation> recommendations = new List<Recommendation>();
+            recommendations.Add(new Recommendation()
+            {
+                Title = "Let Me Explain",
+                Artists = new List<string>() { "Bryson Tiller"},
+                Images = new List<AlbumImage>()
+                {
+                    new AlbumImage()
+                    {
+                        Height = 640,
+                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Width = 640
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 300,
+                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Width = 300
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 64,
+                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Width = 64
+                    },
+                },
+                VideoID = "EAd6UAfJyCI"
+            });
+
+            recommendations.Add(new Recommendation()
+            {
+                Title = "Take Me Home",
+                Artists = new List<string>() { "Jess Glynne" },
+                Images = new List<AlbumImage>()
+                {
+                    new AlbumImage()
+                    {
+                        Height = 640,
+                        Url = "https://i.scdn.co/image/64a7ae4a4804ae88f3b93af220c2eff8ee9b2882",
+                        Width = 640
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 300,
+                        Url = "https://i.scdn.co/image/bae3fdea03d703ec0e06b5a584d17a6af8f3ed1a",
+                        Width = 300
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 64,
+                        Url = "https://i.scdn.co/image/1c7c821199e9ca963108f6d7b99dede10b19605e",
+                        Width = 64
+                    },
+                },
+                VideoID = "2ebfSItB0oM"
+            });
+
+            recommendations.Add(new Recommendation()
+            {
+                Title = "Let Me Explain",
+                Artists = new List<string>() { "Bryson Tiller" },
+                Images = new List<AlbumImage>()
+                {
+                    new AlbumImage()
+                    {
+                        Height = 640,
+                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Width = 640
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 300,
+                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Width = 300
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 64,
+                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Width = 64
+                    },
+                },
+                VideoID = "EAd6UAfJyCI"
+            });
+
+            recommendations.Add(new Recommendation()
+            {
+                Title = "Let Me Explain",
+                Artists = new List<string>() { "Bryson Tiller" },
+                Images = new List<AlbumImage>()
+                {
+                    new AlbumImage()
+                    {
+                        Height = 640,
+                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Width = 640
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 300,
+                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Width = 300
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 64,
+                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Width = 64
+                    },
+                },
+                VideoID = "EAd6UAfJyCI"
+            });
+
+            recommendations.Add(new Recommendation()
+            {
+                Title = "Let Me Explain",
+                Artists = new List<string>() { "Bryson Tiller" },
+                Images = new List<AlbumImage>()
+                {
+                    new AlbumImage()
+                    {
+                        Height = 640,
+                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Width = 640
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 300,
+                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Width = 300
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 64,
+                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Width = 64
+                    },
+                },
+                VideoID = "EAd6UAfJyCI"
+            });
+
             return recommendations;
         }
         #endregion

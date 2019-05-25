@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiUrlBuilder } from './ApiUrlBuilder';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -10,10 +11,7 @@ export class AppService {
         private urlBuilder: ApiUrlBuilder
     ){} 
 
-    getRecommendations(): void {
-        this.http.get(this.urlBuilder.recommendationsUrl()).subscribe(data => {
-            console.log(data);
-        },
-        error => console.error(error));
+    getRecommendations(): Observable<any> {
+        return this.http.get(this.urlBuilder.recommendationsUrl());
     }
 }

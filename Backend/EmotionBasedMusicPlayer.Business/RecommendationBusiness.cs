@@ -99,7 +99,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
         }
 
         public JObject GetRecommendations(List<string> artistSeed = null, List<string> genreSeed = null,
-            TuneableTrack target = null, TuneableTrack min = null, TuneableTrack max = null, int limit = 20, string market = "")
+            TuneableTrack target = null, TuneableTrack min = null, TuneableTrack max = null, int limit = 5, string market = "")
         {
             var token = GetToken();
             if (token == null || string.IsNullOrEmpty(token))

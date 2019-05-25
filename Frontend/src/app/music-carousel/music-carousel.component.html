@@ -1,0 +1,7 @@
+<carousel-component [margin]="140" [mode]="'horizontal'" class="style-carousel" (onSlideChange)="slideChange($event)" #carousel id="carousel">
+  <div class="item-carousel" *ngFor="let track of tracks; let i = index">
+    <img src ="{{track.Images[0].Url}}" (click)="goToSlide(i)" />
+  </div>
+</carousel-component>
+<app-music-player *ngIf="tracks?.length>0 && currentIndex>=0" [videoId]="tracks[currentIndex].VideoID"></app-music-player>
+

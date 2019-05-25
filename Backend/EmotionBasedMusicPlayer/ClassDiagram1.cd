@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EmotionBasedMusicPlayer.Controllers.ArtistController">
+    <Position X="8.75" Y="3.75" Width="1.75" />
+    <InheritanceLine Type="EmotionBasedMusicPlayer.Core.MainApiController" FixedToPoint="true">
+      <Path>
+        <Point X="8.625" Y="2.828" />
+        <Point X="8.625" Y="3.375" />
+        <Point X="9.75" Y="3.375" />
+        <Point X="9.75" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAkAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ArtistController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Controllers.GenreController">
+    <Position X="12.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAkAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\GenreController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Controllers.RecommendationController">
+    <Position X="1.75" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAABAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\RecommendationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Controllers.TokenController">
+    <Position X="10.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TokenController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Controllers.UserArtistController">
+    <Position X="6.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAACAAAEAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserArtistController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Controllers.UserController">
+    <Position X="14.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAEAAAAAAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Controllers.UserGenreController">
+    <Position X="4.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAACAAAEAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserGenreController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Core.JwtTokenLibrary">
+    <Position X="12.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Core\JwtTokenLibrary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Core.MainApiController">
+    <Position X="7.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\MainApiController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Core.RsaEncryption" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Core\RsaEncryption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmotionBasedMusicPlayer.Filters.AuthenticationFilter" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACASAAAAAQBAAAA=</HashCode>
+      <FileName>Filters\AuthenticationFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

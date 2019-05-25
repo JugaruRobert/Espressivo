@@ -1,0 +1,15 @@
+<div id="youtubeContainer">
+  <youtube-player 
+      [videoId]="videoId" 
+      (ready)="savePlayer($event)"
+      (change)="onStateChange($event)"
+      [playerVars]="playerVars"
+  >
+  </youtube-player>
+
+  <div class="row">
+    <button id="pauseAudio" type="button" class="btn btn-light" (click)="pauseVideo()">Pause</button>
+    <button id="playAudio" type="button" class="btn btn-light" (click)="playVideo()">Play</button>
+  </div>
+
+

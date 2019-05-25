@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { AppService } from '../shared/service/AppService';
 import { ApiUrlBuilder } from '../shared/service/ApiUrlBuilder';
 import { MatDialog } from '@angular/material';
@@ -12,7 +12,8 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-
+  public tracks: any[];
+  
   constructor(public dialog: MatDialog,
     private appService: AppService) {}
 
@@ -27,9 +28,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   getRecommendations(): void{
-    this.appService.getRecommendations();
+   this.appService.getRecommendations().subscribe((data) => {this.tracks = data;    console.log(this.tracks)});
   }
 }

@@ -18,7 +18,10 @@ namespace EmotionBasedMusicPlayer.Models.Recommendations
         public List<string> Artists { get; set; } = new List<string>();
 
         [DataMember]
-        public string Url { get; set; } 
+        public List<AlbumImage> Images { get; set; } = new List<AlbumImage>();
+
+        [DataMember]
+        public string VideoID { get; set; } 
         #endregion
     }
 }

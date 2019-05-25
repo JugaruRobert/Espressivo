@@ -12,3 +12,22 @@ body
     background-color: $navbar-bg !important;
     border-bottom: 1px solid #23282c !important;
 }
+
+::-webkit-scrollbar {
+    background-color: $brand-darker;
+    width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $brand-dark;
+    border-right: solid 2.5px $brand-darker;
+    border-left: solid 2.5px $brand-darker;
+}
+
+iframe{
+    position:absolute;
+    top:0;
+    width:0;
+    height:0;
+}

@@ -17,10 +17,14 @@
     </mat-menu>
   </div>
 </nav>
-<main class="main">
-  <div class="container-fluid animated fadeIn">
-      <div class="row">
-          <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
-      </div>
-  </div>
-</main>
+
+<div class="container-fluid animated fadeIn">
+    <div class="row">
+        <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
+    </div>
+    <div id="carouselContainer">
+      <app-music-carousel [tracks]="tracks"></app-music-carousel>
+    </div>
+</div>
+
+
