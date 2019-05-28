@@ -35,6 +35,11 @@ namespace EmotionBasedMusicPlayer.Business
             return _context.DALContext.UserDAL.ReadByID(username);
         }
 
+        public User ReadByUsernameAndEmail(string username,string email)
+        {
+            return _context.DALContext.UserDAL.ReadByUsernameAndEmail(username,email);
+        }
+
         public void Update(User user)
         {
             _context.DALContext.UserDAL.Update(user);

@@ -1,5 +1,5 @@
-CREATE DATABASE EmotionBasedAudioPlayer
-USE EmotionBasedAudioPlayer
+CREATE DATABASE EmotionBasedMusicPlayer
+USE EmotionBasedMusicPlayer
 GO
 
 IF OBJECT_ID('dbo.UsersArtists', 'U') IS NOT NULL 
@@ -15,8 +15,8 @@ IF OBJECT_ID('dbo.Genres', 'U') IS NOT NULL
 
 CREATE TABLE [Users] (
 	[Username] NVARCHAR(20),
-	[Email] NVARCHAR(50) UNIQUE,
-	[Password] NVARCHAR(50),
+	[Email] NVARCHAR(50),
+	[Password] NVARCHAR(max),
 	CONSTRAINT [PK_Users] PRIMARY KEY ([Username])
 );
 

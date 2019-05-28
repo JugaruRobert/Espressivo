@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatSliderChange } from '@angular/material';
 
 @Component({
@@ -9,11 +9,11 @@ import { MatSliderChange } from '@angular/material';
 
 export class MusicPlayerComponent{
     @Input() videoId :string;
-    
+    @Output() endVideoEmitter : EventEmitter<any> = new EventEmitter<any>();
+
     playerVars = {
       autoplay: "1"
     };
-
 
     private player : any;
     private ytEvent : any;
@@ -32,6 +32,9 @@ export class MusicPlayerComponent{
       this.ytEvent = event.data;
       if (event.data == YT.PlayerState.UNSTARTED) {
         this.playVideo();
+      }
+      else if(event.data == YT.PlayerState.ENDED){
+          this.endVideoEmitter.emit("videoEnded");
       }
     }
 

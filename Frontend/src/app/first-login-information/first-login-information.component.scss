@@ -1,0 +1,163 @@
+@import "../../assets/scss/variables";
+
+#firstLoginContainer:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color:white !important;
+    filter:blur(5px);
+    background: url('../../assets/images/background.jpg') no-repeat center center fixed; 
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container-fluid.firstLoginContainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 150px;
+}
+
+#firstLoginInfo
+{
+    filter:blur(0) !important;
+    min-width: 700px;
+    padding: 10px 20px;
+    color:white !important;
+    background-color: $body-bg;
+}
+
+.matExpansionPanel{
+    background-color: $navbar-bg !important;
+}
+
+.matExpansionTitle
+{
+    color:white !important;
+}
+
+.matExpansionDescription
+{
+    color:white !important;
+}
+
+.mat-expansion-indicator::after
+{
+    color:white !important;
+}
+
+#confirmPreferencesButton{
+ 
+    margin-top:20px;
+    background-color:#0d7291;
+    border-color:#0d7291;
+    outline:none !important;
+}
+
+#confirmContainer
+{
+    display: flex;
+    justify-content: center;
+}
+
+#genresContainer
+{
+    max-height: 250px;
+    overflow: overlay;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    color:white;
+
+    .mat-checkbox-layout .mat-checkbox-label {
+        font-size: 14px;
+    }
+    .mat-checkbox-frame {
+        border-color: white;
+        width: 14px;
+        height: 14px;
+        border-width: 1px;
+    }
+    .mat-checkbox-inner-container {
+        width: 14px;
+        height: 14px;
+    }
+    .mat-checkbox-checked {
+        .mat-checkbox-frame {
+            border-color: $brand-darker;
+        }
+        .mat-checkbox-background {
+            background-color: $brand-darker;
+        }
+    }
+    .mat-checkbox-ripple .mat-ripple-element {
+        background-color: unset;
+    }
+}
+  
+#artistSearchContainer{
+    width: 100%;
+    color:white !important;
+    .mat-input-element{
+        caret-color:white !important;
+    }
+    .mat-form-field-label {
+        color: white;
+    }
+    .mat-form-field-underline {
+        background-color: white;
+        &:focus {
+            background-color: white;
+        }
+    }
+    span.mat-form-field-ripple {
+        background-color: white !important;
+    }
+    &.mat-form-field-should-float .mat-form-field-label-wrapper {display: none !important}
+}
+
+
+#selectedArtists
+{
+    max-height: 250px;
+    overflow: overlay;
+    display: grid;
+    grid-template-columns: 33% 33% 34%;
+    grid-row-gap: 5px;
+    color:white;
+}
+
+.removeArtist
+{
+    cursor: pointer;
+    color:$brand-darker !important;
+    margin-right: 5px;
+    position: absolute;
+    top: -1px;
+    left: -0.7px;
+}
+
+.removeArtistContainer
+{
+    background-color: white;
+    width: 10px;
+    height: 11px;
+    margin-right: 5px;
+    border-radius: 49px;
+    margin-top: 3px;
+    position: relative;
+    margin-left: 2px;
+}
+
+.selectedArtistDiv
+{
+    display:flex;
+}

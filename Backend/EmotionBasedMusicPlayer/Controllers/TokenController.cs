@@ -24,13 +24,19 @@ namespace EmotionBasedMusicPlayer.Controllers
             string password = HttpContext.Current.Request.Headers["password"];
 
             if (username == null || password == null)
-                throw new Exception("Unauthorized");
+            {
+                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Error.MissingCredentials");
+                throw new HttpResponseException(response);
+            }
 
-            password = RsaEncryption.Encryption(password);
+            password = AesEncryption.Encrypt(password);
             BusinessContext context = new BusinessContext();
             User user = context.UserBusiness.ReadUser(username, password);
             if (user == null)
-                throw new Exception("Unauthorized");
+            {
+                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Error.InvalidCredentials");
+                throw new HttpResponseException(response);
+            }
 
             return JwtTokenLibrary.GenerateToken(username, user.Email, password);
         } 

@@ -1,4 +1,5 @@
 ﻿using EmotionBasedMusicPlayer.Core;
+using EmotionBasedMusicPlayer.Filters;
 using EmotionBasedMusicPlayer.Models;
 using System;
 using System.Collections.Generic;

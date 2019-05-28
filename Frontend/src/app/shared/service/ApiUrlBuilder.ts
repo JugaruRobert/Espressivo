@@ -2,9 +2,25 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ApiUrlBuilder {
-    private readonly baseUrl = 'http://localhost:29852/';
+    private readonly baseUrl = 'http://localhost:29852';
     
     recommendationsUrl():string{
         return this.baseUrl + "/recommendations";
+    }
+
+    tokenUrl():string{
+        return this.baseUrl + "/token";
+    }
+
+    registerUrl():string{
+        return this.baseUrl + "/users/register";
+    }
+
+    genres():string{
+        return this.baseUrl + "/recommendations/genres";
+    }
+
+    artists():string{
+        return this.baseUrl + "/recommendations/artists/";
     }
 }

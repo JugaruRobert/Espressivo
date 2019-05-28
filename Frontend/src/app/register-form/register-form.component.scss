@@ -1,0 +1,27 @@
+@import "../../assets/scss/variables";
+
+#registerForm{
+    padding-top:10px;
+    color:white;
+    overflow: hidden;
+}
+
+#registerButton{
+    background-color:#0d7291;
+    border-color:#0d7291;
+    outline:none !important;
+
+    &:focus{
+        outline:none !important;
+    }
+}
+
+.invalid-feedback{
+    font-size: 16px;
+    color:#ff3333;
+}
+
+.form-control.is-invalid
+{
+    border:1.25px solid #dc3545 !important;
+}

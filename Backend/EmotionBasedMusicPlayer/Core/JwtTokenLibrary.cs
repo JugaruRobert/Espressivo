@@ -26,7 +26,6 @@ namespace EmotionBasedMusicPlayer.Core
                 Subject = new ClaimsIdentity(new[]
                 {
                    new Claim(ClaimTypes.Name, username),
-                   new Claim(ClaimValueTypes.Rsa,encryptedPass),
                    new Claim(ClaimTypes.Email, email)
                 }),
 

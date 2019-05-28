@@ -1,0 +1,71 @@
+@import "../../assets/scss/variables";
+
+#firstLoginContainer:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color:white !important;
+    filter:blur(5px);
+    background: url('../../assets/images/background.jpg') no-repeat center center fixed; 
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container-fluid.firstLoginContainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 150px;
+}
+
+#firstLoginInfo
+{
+    filter:blur(0) !important;
+    min-width: 500px;
+    padding: 10px 20px;
+    color:white !important;
+}
+
+.matExpansionPanel{
+    background-color: $navbar-bg !important;
+}
+
+.matExpansionTitle
+{
+    color:white !important;
+}
+
+.matExpansionDescription
+{
+    color:white !important;
+}
+
+.mat-expansion-indicator::after
+{
+    color:white !important;
+}
+
+#accountSettingsForm{
+    padding-top:10px;
+    color:white;
+    overflow: hidden;
+}
+
+.invalid-feedback{
+    font-size: 16px;
+    color:#ff3333;
+}
+
+.form-control.is-invalid
+{
+    border:1.25px solid #dc3545 !important;
+}

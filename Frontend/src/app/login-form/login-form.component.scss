@@ -1,0 +1,22 @@
+@import "../../assets/scss/variables";
+
+#loginForm{
+    padding-top:10px;
+    color:white;
+    overflow: hidden;
+}
+
+#loginButton{
+    background-color:#0d7291;
+    border-color:#0d7291;
+}
+
+.invalid-feedback{
+    font-size: 16px;
+    color:#ff3333;
+}
+
+.form-control.is-invalid
+{
+    border:1.25px solid #dc3545 !important;
+}

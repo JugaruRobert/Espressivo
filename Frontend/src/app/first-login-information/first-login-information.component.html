@@ -1,0 +1,44 @@
+<div class="container-fluid firstLoginContainer" id="firstLoginContainer">
+  <div id="firstLoginInfo" class="jumbotron">
+    <mat-accordion>
+      <mat-expansion-panel class="matExpansionPanel" id="genrePreferences">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="matExpansionTitle">
+            Genres
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <div id="genresContainer">
+          <div *ngFor="let genre of genres">
+              <mat-checkbox>{{genre | titlecase}}</mat-checkbox>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="matExpansionPanel" id="artistPreferences">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="matExpansionTitle">
+            Artists
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field id="artistSearchContainer">
+          <input [formControl]="searchArtist" type="text" id="searchArtistInput" (keyup)="onKeyUp()" (keydown)="onKeyDown()" placeholder="Search artists" matInput [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option (click)="addArtist(artist.name,artist.id)" *ngFor="let artist of artists" [value]="artist">
+              {{artist.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div id="selectedArtists">
+            <div *ngFor="let selectedArtist of selectedArtists;let i=index" class="selectedArtistDiv">
+                <div class="removeArtistContainer"><i class="fas fa-minus-square removeArtist" (click)="unselectArtist(i)"></i></div>
+                <span attr.artistID="{{selectedArtist.artistID}}">{{selectedArtist.artistName}}</span>
+            </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div id="confirmContainer">
+     <button id="confirmPreferencesButton" [disabled]="loading" class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>

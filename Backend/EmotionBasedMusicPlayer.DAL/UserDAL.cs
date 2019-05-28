@@ -42,6 +42,11 @@ namespace EmotionBasedMusicPlayer.DAL
             return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_Read", new SqlParameter("Username", username), new SqlParameter("Password", password)).FirstOrDefault();
         }
 
+        public User ReadByUsernameAndEmail(string username, string email)
+        {
+            return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByUsernameAndEmail", new SqlParameter("Username", username), new SqlParameter("Email", email)).FirstOrDefault();
+        }
+
         public User ReadByID(string username)
         {
             return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByID", new SqlParameter("Username", username)).FirstOrDefault();

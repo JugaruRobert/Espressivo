@@ -1,0 +1,36 @@
+@import "../../assets/scss/variables";
+
+#loginContainer:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color:white !important;
+    filter:blur(5px);
+    background: url('../../assets/images/background.jpg') no-repeat center center fixed; 
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container-fluid.loginFormContainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 150px;
+}
+
+.jumbotron
+{
+    filter:blur(0) !important;
+    background-color: $navbar-bg !important;
+    min-width: 320px;
+    padding: 10px 20px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, EventEmitter, SimpleChanges, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild,SimpleChanges, HostListener, Output, EventEmitter } from '@angular/core';
 import { CarouselComponent } from 'angular2-carousel';
 import { AppService } from '../shared/service/AppService';
 
@@ -28,10 +28,12 @@ export class MusicCarouselComponent implements OnInit {
         this.carousel.slideNext();
     }
   }
-  
+
+  @Output() getMoreTracksEmitter : EventEmitter<any> = new EventEmitter<any>();
   public slideTransitionFinished:any;
   public currentIndex = -1;
   @Input() tracks : any[];
+
   
   constructor() {
   }
@@ -40,7 +42,7 @@ export class MusicCarouselComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['tracks']) {
-      setTimeout(()=>{   
+      setTimeout(()=>{ 
         this.carousel.reInit();
         this.currentIndex = 0;
       }, 0);
@@ -53,6 +55,8 @@ export class MusicCarouselComponent implements OnInit {
   slideChange(event:any){
     if(this.currentIndex == event.activeIndex)
       return;
+    if(event.activeIndex == this.tracks.length - 2)
+      this.getMoreTracksEmitter.emit("getTracks");
     clearTimeout(this.slideTransitionFinished);
     this.slideTransitionFinished = setTimeout(()=>{this.currentIndex = event.activeIndex;},500);
   }
@@ -60,5 +64,9 @@ export class MusicCarouselComponent implements OnInit {
   goToSlide(index: number){
     this.carousel.slideTo(index);
     this.currentIndex = index;
+  }
+
+  nextSlide(){
+    this.carousel.slideNext();
   }
 }

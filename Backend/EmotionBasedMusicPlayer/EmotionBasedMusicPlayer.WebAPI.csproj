@@ -110,7 +110,7 @@
     <Compile Include="Controllers\UserGenreController.cs" />
     <Compile Include="Core\JwtTokenLibrary.cs" />
     <Compile Include="Core\MainApiController.cs" />
-    <Compile Include="Core\RsaEncryption.cs" />
+    <Compile Include="Core\AesEncryption.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

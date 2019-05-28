@@ -5,7 +5,7 @@ GO
 CREATE PROCEDURE [Users_Insert]
 	@Username NVARCHAR(20),
 	@Email NVARCHAR(50),
-	@Password NVARCHAR(50)
+	@Password NVARCHAR(max)
 AS
 BEGIN
 	INSERT INTO Users([Username],[Email],[Password])
@@ -13,9 +13,21 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [Users_ReadByUsernameAndEmail]
+	@Username NVARCHAR(20),
+	@Email NVARCHAR(50)
+AS
+BEGIN
+	SELECT *
+	FROM [Users]
+	WHERE [Username] = @Username OR [Email] = @Email
+END
+GO
+
+
 CREATE PROCEDURE [Users_Read]
 	@Username NVARCHAR(20),
-	@Password NVARCHAR(50)
+	@Password NVARCHAR(max)
 AS
 BEGIN
 	SELECT *
@@ -44,7 +56,7 @@ GO
 CREATE PROCEDURE [Users_Update]
 	@Username NVARCHAR(20),
 	@Email NVARCHAR(50),
-	@Password NVARCHAR(50)
+	@Password NVARCHAR(max)
 AS
 BEGIN
 	UPDATE [Users]

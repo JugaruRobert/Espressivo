@@ -14,6 +14,8 @@ using EmotionBasedMusicPlayer.Core;
 using Newtonsoft.Json.Linq;
 using EmotionBasedMusicPlayer.Models;
 using EmotionBasedMusicPlayer.Models.Recommendations;
+using EmotionBasedMusicPlayer.Filters;
+using System.Web;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
@@ -44,9 +46,12 @@ namespace EmotionBasedMusicPlayer.Controllers
         }
 
         [HttpGet]
-        [Route("artists/{artistName}")]
-        public JObject GetArtistSeeds(string artistName)
+        [Route("artists")]
+        public JObject GetArtistSeeds()
         {
+            string artistName = HttpContext.Current.Request.Headers["artist"];
+            if (artistName == null || String.IsNullOrEmpty(artistName))
+                return new JObject();
             return BusinessContext.RecommendationBusiness.GetArtistSeeds(artistName);
         }
         #endregion

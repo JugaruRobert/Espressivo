@@ -1,0 +1,8 @@
+<div class="container-fluid loginFormContainer" id="loginContainer">
+  <div class="jumbotron">
+      <mat-tab-group id="loginTabs" [color]="accent" [backgroundColor]="accent" [@.disabled]="true" (selectedTabChange)="onTabChange($event)">
+          <mat-tab label="Sign In"><app-login-form #loginForm></app-login-form></mat-tab>
+          <mat-tab id="registerTab" label="Sign Up"><app-register-form #registerForm></app-register-form></mat-tab>
+      </mat-tab-group>
+  </div>
+</div>

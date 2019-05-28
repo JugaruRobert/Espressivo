@@ -10,7 +10,7 @@
         <span>Profile</span>
       </button>
       <div class="dropdown-divider"></div>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="signOut()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Sign out</span>
       </button>
@@ -23,7 +23,7 @@
         <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
     </div>
     <div id="carouselContainer">
-      <app-music-carousel [tracks]="tracks"></app-music-carousel>
+      <app-music-carousel (getMoreTracksEmitter)="getRecommendations()" [tracks]="tracks"></app-music-carousel>
     </div>
 </div>
 

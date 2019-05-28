@@ -26,7 +26,10 @@ namespace EmotionBasedMusicPlayer.Core
                     _businessContext = new BusinessContext();
                     //_businessContext = GetAuthenticatedBusinessContext();
                     //if (_businessContext == null)
-                    //throw new Exception("Unauthorized access!");
+                    //{
+                    //    HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Error.Unauthorized");
+                    //    throw new HttpResponseException(response);
+                    //}
                 }
                 return _businessContext;
             }
@@ -46,14 +49,6 @@ namespace EmotionBasedMusicPlayer.Core
             if (string.IsNullOrEmpty(username))
                 return null;
 
-            var passwordClaim = currentIdentity.FindFirst(ClaimValueTypes.Rsa);
-            string password = passwordClaim?.Value;
-
-            if (string.IsNullOrEmpty(password))
-                return null;
-
-            string decryptedPassword = RsaEncryption.Decryption(password);
-
             var emailClaim = currentIdentity.FindFirst(ClaimTypes.Email);
             string email = emailClaim?.Value;
 
@@ -63,7 +58,6 @@ namespace EmotionBasedMusicPlayer.Core
             User authenticatedUser = new User()
             {
                 Username = username,
-                Password = decryptedPassword,
                 Email = email
             };
 

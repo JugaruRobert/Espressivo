@@ -25,7 +25,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
         private GenreBusiness _genreBusiness;
         private UserBusiness _userBusiness;
         private UserArtistBusiness _userArtistBusiness;
-        private UserGenreBuisness _userGenreBuisness;
+        private UserGenreBuisness _userGenreBusiness;
         #endregion
 
         #region Constructor
@@ -146,11 +146,11 @@ namespace EmotionBasedMusicPlayer.Business.Core
         {
             get
             {
-                if (_userGenreBuisness == null)
+                if (_userGenreBusiness == null)
                 {
-                    _userGenreBuisness = new UserGenreBuisness(this);
+                    _userGenreBusiness = new UserGenreBuisness(this);
                 }
-                return _userGenreBuisness;
+                return _userGenreBusiness;
             }
         }
         #endregion
@@ -369,7 +369,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
             DisposeBusinessObject(_genreBusiness);
             DisposeBusinessObject(_userBusiness);
             DisposeBusinessObject(_userArtistBusiness);
-            DisposeBusinessObject(_userGenreBuisness);
+            DisposeBusinessObject(_userGenreBusiness);
 
             if (_dalContext != null)
             {

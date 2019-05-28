@@ -1,4 +1,5 @@
 ﻿using EmotionBasedMusicPlayer.Core;
+using EmotionBasedMusicPlayer.Filters;
 using EmotionBasedMusicPlayer.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.Http;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
-    //[AuthenticationFilter]
+    [AuthenticationFilter]
     [RoutePrefix("artists")]
     public class ArtistController : MainApiController
     {
