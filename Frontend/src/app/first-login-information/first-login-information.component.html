@@ -1,7 +1,7 @@
 <div class="container-fluid firstLoginContainer" id="firstLoginContainer">
   <div id="firstLoginInfo" class="jumbotron">
     <mat-accordion>
-      <mat-expansion-panel class="matExpansionPanel" id="genrePreferences">
+      <mat-expansion-panel [expanded]="true" class="matExpansionPanel" id="genrePreferences">
         <mat-expansion-panel-header>
           <mat-panel-title class="matExpansionTitle">
             Genres
@@ -10,7 +10,7 @@
         
         <div id="genresContainer">
           <div *ngFor="let genre of genres">
-              <mat-checkbox>{{genre | titlecase}}</mat-checkbox>
+            <mat-checkbox (change)="genreCheckboxChange($event.checked,genre)">{{genre | titlecase}}</mat-checkbox>
           </div>
         </div>
       </mat-expansion-panel>
@@ -32,13 +32,13 @@
         <div id="selectedArtists">
             <div *ngFor="let selectedArtist of selectedArtists;let i=index" class="selectedArtistDiv">
                 <div class="removeArtistContainer"><i class="fas fa-minus-square removeArtist" (click)="unselectArtist(i)"></i></div>
-                <span attr.artistID="{{selectedArtist.artistID}}">{{selectedArtist.artistName}}</span>
+                <span attr.artistID="{{selectedArtist.ArtistID}}">{{selectedArtist.ArtistName}}</span>
             </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
     <div id="confirmContainer">
-     <button id="confirmPreferencesButton" [disabled]="loading" class="btn btn-primary">Confirm</button>
+     <button (click)="validateAndSave()" id="confirmPreferencesButton" [disabled]="loading" class="btn btn-primary">Confirm</button>
     </div>
   </div>
 </div>

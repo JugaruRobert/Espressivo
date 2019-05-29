@@ -33,7 +33,7 @@
     min-width: 700px;
     padding: 10px 20px;
     color:white !important;
-    background-color: $body-bg;
+    background-color: $body-bg !important;
 }
 
 .matExpansionPanel{
@@ -122,8 +122,16 @@
         background-color: white !important;
     }
     &.mat-form-field-should-float .mat-form-field-label-wrapper {display: none !important}
+    
 }
 
+.mat-autocomplete-panel.mat-autocomplete-visible{
+    background-color: $brand-dark;
+}
+
+.mat-option-text{
+    color:white;
+}
 
 #selectedArtists
 {

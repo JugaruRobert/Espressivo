@@ -19,7 +19,8 @@ namespace EmotionBasedMusicPlayer.Controllers
         [Route("")]
         public void Insert([FromBody]string username, [FromBody]List<Artist> artists)
         {
-            BusinessContext.UserArtistBusiness.Insert(username, artists);
+            if (artists.Count > 0)
+                BusinessContext.UserArtistBusiness.Insert(username, artists);
         }
 
         [HttpDelete]

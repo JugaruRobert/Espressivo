@@ -34,3 +34,20 @@
     min-width: 320px;
     padding: 10px 20px;
 }
+
+.mat-tab-label .mat-tab-label-content{
+    color:white;
+    font-size: 17px;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar
+{
+    background-color:white;
+}
+
+.mat-tab-label{
+    opacity:0.7 !important;
+    &:focus{
+        opacity:1 !important;
+    }
+}

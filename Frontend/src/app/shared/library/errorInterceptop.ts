@@ -13,45 +13,51 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            this.service.logout();
             if (err.status === 406) {
                 switch(err.error.Message){
                     case "Error.ExistingUsername":
                     {
-                        //$("#registerForm").find("input[formcontrolname='username']").val("")
+                        this.service.logout();
                         this.openSnackBar("There is already an user with this username. Please choose a different one and try again!");
                         break;
                     }
                     case "Error.ExistingEmail":
                     {
-                        //$("#registerForm").find("input[formcontrolname='email']").val("")
+                        this.service.logout();
                         this.openSnackBar("There is already an user with this email. Please choose a different one and try again!");
                         break;
                     }
                 }
             }
             
-            if (err.status === 401) {
+            else if (err.status === 401) {
                 switch(err.error.Message){
                     case "Error.MissingCredentials":
                     {
+                        this.service.logout();
                         this.openSnackBar("Some of the required credentials were missing!");
                         break;
                     }
                     case "Error.InvalidCredentials":
                     {
-                        //$("#loginForm").find("input[formcontrolname='username']").val("")
-                        //$("#loginForm").find("input[formcontrolname='password']").val("")
+                        this.service.logout();
                         this.openSnackBar("Invalid username or password!");
                         break;
                     }
                     default:  
                     {
+                        this.service.logout();
                         this.router.navigate([]);
                         this.openSnackBar("You are not authorized to perform this action!");
                     }
                 }
             }
+
+            else if (err.status === 400) {
+                this.openSnackBar("An error has occured!");
+            }
+            else
+                this.openSnackBar("An error has occured!");
 
             const error = err.error.message || err.statusText;
             return throwError(error);

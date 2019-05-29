@@ -43,7 +43,7 @@ export class RegisterFormComponent implements OnInit {
 
       this.service.register(this.usernameValue, this.emailValue, this.passwordValue).subscribe( user => {
         if(user != null) {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['preferences']);
         }
         else
         {

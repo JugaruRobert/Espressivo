@@ -56,7 +56,9 @@
     <Compile Include="Recommendations\TuneableTrack.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserArtist.cs" />
+    <Compile Include="UserArtistPreferences.cs" />
     <Compile Include="UserGenre.cs" />
+    <Compile Include="UserGenrePreferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -15,9 +15,9 @@ namespace EmotionBasedMusicPlayer.Business
         #endregion
 
         #region Methods
-        public void Insert(string username, List<string> genreNames)
+        public void Insert(UserGenrePreferences userGenres)
         {
-            foreach(string genreName in genreNames)
+            foreach(string genreName in userGenres.Genres)
             {
                 Genre existingGenre = _context.DALContext.GenreDAL.ReadByName(genreName);
                 Guid? genreID = existingGenre?.GenreID;
@@ -30,7 +30,7 @@ namespace EmotionBasedMusicPlayer.Business
                     });
                 }
                 _context.DALContext.UserGenreDAL.Insert(new UserGenre(){
-                    Username = username,
+                    Username = userGenres.Username,
                     GenreID = genreID.Value
                 });
             }

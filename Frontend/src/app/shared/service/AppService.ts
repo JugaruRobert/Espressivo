@@ -96,6 +96,22 @@ export class AppService {
             headers: new HttpHeaders(headerDict)
         };
 
-        return this.http.get(this.urlBuilder.artists(),requestOptions);
+        return this.http.get(this.urlBuilder.artists());
+    }
+
+    insertUserArtists(username:string,artists:any[]):Observable<any>{
+        const data = {
+            'username': username,
+            'artists':artists
+        }
+        return this.http.post(this.urlBuilder.insertUserArtists(),data);
+    }
+
+    insertUserGenres(username:string,genres:any[]):Observable<any>{
+        const data = {
+            'username': username,
+            'genreNames':genres
+        }
+        return this.http.post(this.urlBuilder.insertUserGenres(),data);
     }
 }

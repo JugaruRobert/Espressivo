@@ -23,4 +23,12 @@ export class ApiUrlBuilder {
     artists():string{
         return this.baseUrl + "/recommendations/artists/";
     }
+
+    insertUserGenres(): string {
+        return this.baseUrl + "userGenres/";
+    }
+
+    insertUserArtists(): string {
+        return this.baseUrl + "userArtists";
+    }
 }
