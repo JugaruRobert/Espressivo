@@ -11,10 +11,10 @@ namespace EmotionBasedMusicPlayer.Models
     public class UserGenrePreferences
     {
         #region Properties
-        [DataMember]
+        [DataMember(Name = "Username")]
         public string Username { get; set; }
 
-        [DataMember]
+        [DataMember(Name = "Genres")]
         public List<string> Genres { get; set; }
         #endregion
     }

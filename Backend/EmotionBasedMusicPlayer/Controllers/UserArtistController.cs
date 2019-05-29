@@ -17,10 +17,10 @@ namespace EmotionBasedMusicPlayer.Controllers
         #region Methods
         [HttpPost]
         [Route("")]
-        public void Insert([FromBody]string username, [FromBody]List<Artist> artists)
+        public void Insert([FromBody]UserArtistPreferences userArtists)
         {
-            if (artists.Count > 0)
-                BusinessContext.UserArtistBusiness.Insert(username, artists);
+            if (userArtists.Artists.Count > 0)
+                BusinessContext.UserArtistBusiness.Insert(userArtists);
         }
 
         [HttpDelete]

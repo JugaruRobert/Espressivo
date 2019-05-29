@@ -11,10 +11,10 @@ namespace EmotionBasedMusicPlayer.Models
     public class Artist
     {
         #region Properties
-        [DataMember]
+        [DataMember(Name = "ArtistID")]
         public string ArtistID { get; set; }
 
-        [DataMember]
+        [DataMember(Name = "Name")]
         public string Name { get; set; } 
         #endregion
     }

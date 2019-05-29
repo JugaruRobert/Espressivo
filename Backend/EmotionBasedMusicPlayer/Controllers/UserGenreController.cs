@@ -1,6 +1,7 @@
 ﻿using EmotionBasedMusicPlayer.Core;
 using EmotionBasedMusicPlayer.Filters;
 using EmotionBasedMusicPlayer.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace EmotionBasedMusicPlayer.Controllers
         [Route("")]
         public void Insert([FromBody]UserGenrePreferences userGenres)
         {
-            if(userGenres.Genres.Count > 0)
+            if (userGenres.Genres.Count > 0)
                 BusinessContext.UserGenreBuisness.Insert(userGenres);
         }
 

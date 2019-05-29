@@ -46,7 +46,8 @@ export class FirstLoginInformationComponent implements OnInit {
     if(value && value.trim().length > 0)
     {
       this.service.getArtists(value).subscribe(artists => {
-        this.artists = artists.artists.items;
+        if(artists.artists)
+          this.artists = artists.artists.items;
       });
     }
   }
@@ -85,7 +86,7 @@ export class FirstLoginInformationComponent implements OnInit {
         if(this.selectedGenres.length > 0)
           this.service.insertUserGenres(currentUser.Username, this.selectedGenres);
         
-        //this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard']);
       }
       else
       {

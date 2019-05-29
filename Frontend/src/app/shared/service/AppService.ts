@@ -96,22 +96,22 @@ export class AppService {
             headers: new HttpHeaders(headerDict)
         };
 
-        return this.http.get(this.urlBuilder.artists());
+        return this.http.get(this.urlBuilder.artists(),requestOptions);
     }
 
-    insertUserArtists(username:string,artists:any[]):Observable<any>{
+    insertUserArtists(username:string,artists:any[]){
         const data = {
             'username': username,
-            'artists':artists
+            'artists': artists
         }
-        return this.http.post(this.urlBuilder.insertUserArtists(),data);
+        return this.http.post(this.urlBuilder.insertUserArtists(),data).subscribe();
     }
 
-    insertUserGenres(username:string,genres:any[]):Observable<any>{
+    insertUserGenres(username:string,genres:string[]){
         const data = {
             'username': username,
-            'genreNames':genres
+            'genres': genres
         }
-        return this.http.post(this.urlBuilder.insertUserGenres(),data);
+        return this.http.post(this.urlBuilder.insertUserGenres(),data).subscribe();
     }
 }

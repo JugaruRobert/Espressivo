@@ -32,7 +32,7 @@
         <div id="selectedArtists">
             <div *ngFor="let selectedArtist of selectedArtists;let i=index" class="selectedArtistDiv">
                 <div class="removeArtistContainer"><i class="fas fa-minus-square removeArtist" (click)="unselectArtist(i)"></i></div>
-                <span attr.artistID="{{selectedArtist.ArtistID}}">{{selectedArtist.ArtistName}}</span>
+                <span attr.artistID="{{selectedArtist.ArtistID}}">{{selectedArtist.Name}}</span>
             </div>
         </div>
       </mat-expansion-panel>

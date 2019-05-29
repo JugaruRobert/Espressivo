@@ -15,16 +15,16 @@ namespace EmotionBasedMusicPlayer.Business
         #endregion
 
         #region Methods
-        public void Insert(string username, List<Artist> artists)
+        public void Insert(UserArtistPreferences userArtists)
         {
-            foreach (Artist artist in artists)
+            foreach (Artist artist in userArtists.Artists)
             {
                 Artist existingArtist = _context.DALContext.ArtistDAL.ReadByID(artist.ArtistID);
-                if (artist == null)
+                if (existingArtist == null)
                     _context.DALContext.ArtistDAL.Insert(artist);
 
                 _context.DALContext.UserArtistDAL.Insert(new UserArtist(){
-                    Username = username,
+                    Username = userArtists.Username,
                     ArtistID = artist.ArtistID
                 });
             }

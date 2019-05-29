@@ -25,10 +25,10 @@ export class ApiUrlBuilder {
     }
 
     insertUserGenres(): string {
-        return this.baseUrl + "userGenres/";
+        return this.baseUrl + "/userGenres";
     }
 
     insertUserArtists(): string {
-        return this.baseUrl + "userArtists";
+        return this.baseUrl + "/userArtists";
     }
 }
