@@ -50,11 +50,6 @@
     color:white !important;
 }
 
-.mat-expansion-indicator::after
-{
-    color:white !important;
-}
-
 #confirmPreferencesButton{
  
     margin-top:20px;
@@ -101,36 +96,6 @@
     .mat-checkbox-ripple .mat-ripple-element {
         background-color: unset;
     }
-}
-  
-#artistSearchContainer{
-    width: 100%;
-    color:white !important;
-    .mat-input-element{
-        caret-color:white !important;
-    }
-    .mat-form-field-label {
-        color: white;
-    }
-    .mat-form-field-underline {
-        background-color: white;
-        &:focus {
-            background-color: white;
-        }
-    }
-    span.mat-form-field-ripple {
-        background-color: white !important;
-    }
-    &.mat-form-field-should-float .mat-form-field-label-wrapper {display: none !important}
-    
-}
-
-.mat-autocomplete-panel.mat-autocomplete-visible{
-    background-color: $brand-dark;
-}
-
-.mat-option-text{
-    color:white;
 }
 
 #selectedArtists

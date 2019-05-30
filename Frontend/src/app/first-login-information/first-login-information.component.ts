@@ -74,26 +74,27 @@ export class FirstLoginInformationComponent implements OnInit {
 
   validateAndSave(){
     if(this.selectedArtists.length == 0 && this.selectedGenres.length == 0)
+    {
       this.openSnackBar("You need to select at least one genre or artist");
+      return;
+    }
+
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(currentUser)
+    {
+      if(this.selectedArtists.length > 0)
+        this.service.insertUserArtists(currentUser.Username, this.selectedArtists);
+
+      if(this.selectedGenres.length > 0)
+        this.service.insertUserGenres(currentUser.Username, this.selectedGenres);
+      
+      this.router.navigate(['dashboard']);
+    }
     else
     {
-      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      if(currentUser)
-      {
-        if(this.selectedArtists.length > 0)
-          this.service.insertUserArtists(currentUser.Username, this.selectedArtists);
-
-        if(this.selectedGenres.length > 0)
-          this.service.insertUserGenres(currentUser.Username, this.selectedGenres);
-        
-        this.router.navigate(['dashboard']);
-      }
-      else
-      {
-        this.openSnackBar("An error has occured!");
-        this.service.logout();
-        this.router.navigate([]);
-      }
+      this.openSnackBar("An error has occured!");
+      this.service.logout();
+      this.router.navigate([]);
     }
   }
 

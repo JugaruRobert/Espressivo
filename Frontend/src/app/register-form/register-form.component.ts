@@ -16,8 +16,6 @@ export class RegisterFormComponent implements OnInit {
   private emailValue:string;
   private passwordValue:string;
 
-  @ViewChild('registerFormDirective') registerFormDirective;
-
   constructor(private formBuilder: FormBuilder,private service:AppService,private router:Router,private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -54,11 +52,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   clearErrors(){
-    this.registerFormDirective.resetForm();
-    this.registerForm.markAsPristine();
-    this.registerForm.markAsUntouched();
-    this.registerForm.updateValueAndValidity();
-    this.registerForm.reset();
+    this.submitted = false;
   }
 
   clearForm(){

@@ -1,11 +1,14 @@
+<div id="backImage">
+
+</div>
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
-    Nume smecher aici
+    Espressivo
   </a>
   <div class="nav navbar-nav navbar-right">
     <i [matMenuTriggerFor]="menu" class="fas fa-user-circle" id="userLogo"></i>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openDialog()">
+      <button mat-menu-item (click)="openUserProfileModal()">
         <mat-icon>perm_identity</mat-icon>
         <span>Profile</span>
       </button>
@@ -18,7 +21,7 @@
   </div>
 </nav>
 
-<div class="container-fluid animated fadeIn">
+<div class="container-fluid animated fadeIn" id="mainDashboardContainer">
     <div class="row">
         <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
     </div>

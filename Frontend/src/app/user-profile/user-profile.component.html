@@ -1,15 +1,67 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
-<div mat-dialog-content>
-  My favorite animal is:
-  <ul>
-    <li>
-      <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
-    </li>
-  </ul>
+<div mat-dialog-content id="userProfileModal">
+  <button id="closeDialog" mat-button [mat-dialog-close]="true">X</button>
+  <mat-accordion>
+      <mat-expansion-panel [expanded]="true" class="matExpansionPanel" id="profileSettings">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="matExpansionTitle">
+              Profile Settings
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form id="profileSettingsForm"  #form="ngForm" [formGroup]="profileSettingsForm" (ngSubmit)="validateAndSave()">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" formControlName="username" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel  class="matExpansionPanel" id="genrePreferences">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="matExpansionTitle">
+            Genres
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <div id="genresContainer">
+          <div *ngFor="let genre of genres">
+            <mat-checkbox (change)="genreCheckboxChange($event.checked,genre)">{{genre | titlecase}}</mat-checkbox>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="matExpansionPanel" id="artistPreferences">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="matExpansionTitle">
+            Artists
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field id="artistSearchContainer">
+          <input [formControl]="searchArtist" type="text" id="searchArtistInput" (keyup)="onKeyUp()" (keydown)="onKeyDown()" placeholder="Search artists" matInput [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option (click)="addArtist(artist.name,artist.id)" *ngFor="let artist of artists" [value]="artist">
+              {{artist.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div id="selectedArtists">
+            <div *ngFor="let selectedArtist of selectedArtists;let i=index" class="selectedArtistDiv">
+                <div class="removeArtistContainer"><i class="fas fa-minus-square removeArtist" (click)="unselectArtist(i)"></i></div>
+                <span attr.artistID="{{selectedArtist.ArtistID}}">{{selectedArtist.Name}}</span>
+            </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div id="confirmContainer">
+      <button type="submit" form="profileSettingsForm" id="confirmPreferencesButton" [disabled]="loading" class="btn btn-primary">Confirm</button>
+    </div>
 </div>

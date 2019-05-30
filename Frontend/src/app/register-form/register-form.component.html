@@ -1,7 +1,7 @@
 <div id="registerForm">
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 offset-sm-12">
-        <form #form="ngForm" [formGroup]="registerForm"  #registerFormDirective="ngForm" (ngSubmit)="onSubmit()">
+        <form #form="ngForm" [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />

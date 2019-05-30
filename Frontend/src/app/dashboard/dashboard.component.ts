@@ -19,13 +19,9 @@ export class DashboardComponent implements OnInit {
     private appService: AppService,
     private router: Router) {}
 
-  openDialog(): void {
+   openUserProfileModal(): void {
     const dialogRef = this.dialog.open(UserProfileComponent, {
-      width: '250px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      width: '700px'
     });
   }
 
@@ -43,8 +39,15 @@ export class DashboardComponent implements OnInit {
   getRecommendations(): void{
    this.appService.getRecommendations().subscribe((data) => {
      if(this.tracks.length == 0)
-      this.tracks = data;
-      else
+     {
+       this.tracks = data;
+       if(this.tracks.length > 0)
+       {
+         var image = "url('" + this.tracks[0].Images[0].Url  + "')";
+         $("#backImage").css("background-image",image);
+       }
+     }
+     else
         data.forEach(element => {
             this.tracks.push(element);
         });   

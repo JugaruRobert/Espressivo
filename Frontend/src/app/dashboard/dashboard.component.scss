@@ -1,3 +1,5 @@
+@import "../../assets/scss/variables";
+
 #userLogo
 {
     font-size: 26px;
@@ -26,4 +28,100 @@
 #carouselContainer
 {
     margin-right: 21px !important;
+}
+
+#backImage
+{
+    filter:contrast(60%);
+    background: url('../../assets/images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: -3;
+    width:100%;
+    min-height: 100%;
+}
+
+.mat-dialog-container
+{
+    color:white !important;
+    background-color: $body-bg !important;
+    min-width: 320px;
+    padding: 10px 20px;
+    position: relative;
+    padding-top: 35px;
+}
+
+.mat-expansion-indicator:after
+{
+    color:white !important;
+}
+
+#artistSearchContainer{
+    width: 100%;
+    color:white !important;
+    .mat-input-element{
+        caret-color:white !important;
+    }
+    .mat-form-field-label {
+        color: white;
+    }
+    .mat-form-field-underline {
+        background-color: white;
+        &:focus {
+            background-color: white;
+        }
+    }
+    span.mat-form-field-ripple {
+        background-color: white !important;
+    }
+    &.mat-form-field-should-float .mat-form-field-label-wrapper {display: none !important}
+}
+
+.mat-autocomplete-panel.mat-autocomplete-visible{
+    background-color: $brand-dark;
+}
+
+.mat-option-text{
+    color:white !important;
+}
+
+#genresContainer
+{
+    max-height: 250px;
+    overflow: overlay;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    color:white;
+
+    .mat-checkbox-layout .mat-checkbox-label {
+        font-size: 14px;
+    }
+    .mat-checkbox-frame {
+        border-color: white;
+        width: 14px;
+        height: 14px;
+        border-width: 1px;
+    }
+
+    .mat-checkbox-inner-container {
+        width: 14px;
+        height: 14px;
+    }
+
+    .mat-checkbox-checked {
+        .mat-checkbox-frame {
+            border-color: $brand-darker;
+        }
+        .mat-checkbox-background {
+            background-color: $brand-darker;
+        }
+    }
+    .mat-checkbox-ripple .mat-ripple-element {
+        background-color: unset;
+    }
 }

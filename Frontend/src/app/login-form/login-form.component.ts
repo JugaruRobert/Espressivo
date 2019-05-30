@@ -18,8 +18,6 @@ export class LoginFormComponent implements OnInit {
   private usernameValue:string;
   private passwordValue:string;
 
-  @ViewChild('loginFormDirective') loginFormDirective;
-  
   constructor(private formBuilder: FormBuilder,private service:AppService,private router: Router,private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -54,11 +52,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   clearErrors(){
-      this.loginFormDirective.resetForm();
-      this.loginForm.markAsPristine();
-      this.loginForm.markAsUntouched();
-      this.loginForm.updateValueAndValidity();
-      this.loginForm.reset();
+    this.submitted = false;
   }
 
   clearForm(){

@@ -58,8 +58,16 @@ export class MusicCarouselComponent implements OnInit {
     if(event.activeIndex == this.tracks.length - 2)
       this.getMoreTracksEmitter.emit("getTracks");
     clearTimeout(this.slideTransitionFinished);
-    this.slideTransitionFinished = setTimeout(()=>{this.currentIndex = event.activeIndex;},500);
+    this.slideTransitionFinished = setTimeout(()=>{
+      this.currentIndex = event.activeIndex;
+      if(event.activeIndex < this.tracks.length && this.tracks.length > 0)
+      {
+        var image = "url('" + this.tracks[this.currentIndex].Images[0].Url  + "')";
+        $("#backImage").css("background-image",image);
+      }
+    },500);
   }
+
 
   goToSlide(index: number){
     this.carousel.slideTo(index);
