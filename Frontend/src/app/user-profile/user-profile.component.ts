@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { DialogData } from '../app.component';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder, EmailValidator } from '@angular/forms';
 import { AppService } from '../shared/service/AppService';
 import { Router } from '@angular/router';
+import { User } from '../shared/models/User';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   submitted = false;
   
   private usernameValue:string;
-  private passwordValue:string;
+  private emailValue:string;
   private searchHandler:any;
   private searchDelay: number = 500;
 
@@ -30,6 +31,7 @@ export class UserProfileComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit() {
+    $("#closeDialog").blur()
     this.profileSettingsForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
@@ -42,8 +44,8 @@ export class UserProfileComponent implements OnInit {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(currentUser)
     {
-      // this.profileSettingsForm.get('username').setValue(currentUser.Username);
-      // this.profileSettingsForm.get('email').setValue(currentUser.Email);
+      this.profileSettingsForm.get('username').setValue(currentUser.Username);
+      this.profileSettingsForm.get('email').setValue(currentUser.Email);
     }
   }
 
@@ -111,13 +113,8 @@ export class UserProfileComponent implements OnInit {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(currentUser)
     {
-      if(this.selectedArtists.length > 0)
-        this.service.insertUserArtists(currentUser.Username, this.selectedArtists);
-
-      if(this.selectedGenres.length > 0)
-        this.service.insertUserGenres(currentUser.Username, this.selectedGenres);
-      
-      this.router.navigate(['dashboard']);
+      this.updateUserInformation();
+      //this.updatePreferences(currentUser.Username);
     }
     else
     {
@@ -125,6 +122,22 @@ export class UserProfileComponent implements OnInit {
       this.service.logout();
       this.router.navigate([]);
     }
+  }
+
+  updateUserInformation(){
+    this.usernameValue = this.profileSettingsForm.get('username').value;
+    this.emailValue = this.profileSettingsForm.get('email').value;
+
+    this.service.updateUser(this.usernameValue,this.emailValue);
+  }
+
+  updatePreferences(username:string)
+  {
+    if(this.selectedArtists.length > 0)
+      this.service.insertUserArtists(username, this.selectedArtists);
+
+    if(this.selectedGenres.length > 0)
+      this.service.insertUserGenres(username, this.selectedGenres);
   }
 
   private openSnackBar(message: string) {

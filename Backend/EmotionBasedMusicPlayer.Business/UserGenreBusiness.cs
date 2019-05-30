@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace EmotionBasedMusicPlayer.Business
 {
-    public class UserGenreBuisness : BusinessObject
+    public class UserGenreBusiness : BusinessObject
     {
         #region Constructors
-        public UserGenreBuisness(BusinessContext context) : base(context) { }
+        public UserGenreBusiness(BusinessContext context) : base(context) { }
         #endregion
 
         #region Methods
         public void Insert(UserGenrePreferences userGenres)
         {
+            _context.DALContext.UserGenreDAL.DeleteByUsername(userGenres.Username);
             foreach(string genreName in userGenres.Genres)
             {
                 Genre existingGenre = _context.DALContext.GenreDAL.ReadByName(genreName);
@@ -46,7 +47,7 @@ namespace EmotionBasedMusicPlayer.Business
             _context.DALContext.UserGenreDAL.DeleteByUsername(username);
         }
 
-        public IEnumerable<UserArtist> ReadAll()
+        public IEnumerable<UserGenre> ReadAll()
         {
             return _context.DALContext.UserGenreDAL.ReadAll();
         }

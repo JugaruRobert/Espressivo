@@ -114,4 +114,29 @@ export class AppService {
         }
         return this.http.post(this.urlBuilder.insertUserGenres(),data).subscribe();
     }
+
+    updateUser(username:string,email:string){
+        const data = {
+            'username': username,
+            'email': email
+        }
+        return this.http.post(this.urlBuilder.updateUser(),data).subscribe();//() =>{
+        //     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        //     if(currentUser)
+        //     {
+        //       var user = new User();
+        //       //user.Username = this.usernameValue;
+        //       //user.Email = this.emailValue
+        //       user.Token = currentUser.Token;
+      
+        //       localStorage.setItem('currentUser', JSON.stringify(user));
+        //     }
+        //     else
+        //     {
+        //       //this.openSnackBar("An error has occured!");
+        //       this.logout();
+        //       //this.router.navigate([]);
+        //     }
+        //   });
+    }
 }

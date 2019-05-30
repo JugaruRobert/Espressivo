@@ -42,7 +42,12 @@ namespace EmotionBasedMusicPlayer.Business
 
         public void Update(User user)
         {
-            _context.DALContext.UserDAL.Update(user);
+            User existingUser = _context.DALContext.UserDAL.ReadByUsernameAndEmail(user.Username, user.Email);
+            if (existingUser != null)
+            {
+                user.Password = existingUser.Password;
+                _context.DALContext.UserDAL.Update(user);
+            }
         }
 
         public void Delete(string username)

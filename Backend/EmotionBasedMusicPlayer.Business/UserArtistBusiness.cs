@@ -17,6 +17,7 @@ namespace EmotionBasedMusicPlayer.Business
         #region Methods
         public void Insert(UserArtistPreferences userArtists)
         {
+            _context.DALContext.UserArtistDAL.DeleteByUsername(userArtists.Username);
             foreach (Artist artist in userArtists.Artists)
             {
                 Artist existingArtist = _context.DALContext.ArtistDAL.ReadByID(artist.ArtistID);

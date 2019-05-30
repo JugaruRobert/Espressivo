@@ -32,9 +32,9 @@ namespace EmotionBasedMusicPlayer.DAL
             DbOperations.ExecuteCommand(_context.connectionString, "dbo.UsersGenres_RemoveByUsername", new SqlParameter("Username", username));
         }
 
-        public IEnumerable<UserArtist> ReadAll()
+        public IEnumerable<UserGenre> ReadAll()
         {
-            return DbOperations.ExecuteQuery<UserArtist>(_context.connectionString, "dbo.UsersGenres_ReadAll");
+            return DbOperations.ExecuteQuery<UserGenre>(_context.connectionString, "dbo.UsersGenres_ReadAll");
         }
 
         public UserGenre ReadByUsername(string name)

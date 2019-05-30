@@ -21,35 +21,35 @@ namespace EmotionBasedMusicPlayer.Controllers
         public void Insert([FromBody]UserGenrePreferences userGenres)
         {
             if (userGenres.Genres.Count > 0)
-                BusinessContext.UserGenreBuisness.Insert(userGenres);
+                BusinessContext.UserGenreBusiness.Insert(userGenres);
         }
 
         [HttpDelete]
         [Route("{username}/{genreID:Guid}")]
         public void Delete(string username, Guid genreID)
         {
-            BusinessContext.UserGenreBuisness.Delete(username, genreID);
+            BusinessContext.UserGenreBusiness.Delete(username, genreID);
         }
 
         [HttpDelete]
         [Route("{username}")]
         public void DeleteByUsername(string username)
         {
-            BusinessContext.UserGenreBuisness.DeleteByUsername(username);
+            BusinessContext.UserGenreBusiness.DeleteByUsername(username);
         }
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<UserArtist> ReadAll()
+        public IEnumerable<UserGenre> ReadAll()
         {
-            return BusinessContext.UserGenreBuisness.ReadAll();
+            return BusinessContext.UserGenreBusiness.ReadAll();
         }
 
         [HttpGet]
         [Route("{name}")]
         public UserGenre ReadByUsername(string name)
         {
-            return BusinessContext.UserGenreBuisness.ReadByUsername(name);
+            return BusinessContext.UserGenreBusiness.ReadByUsername(name);
         }
         #endregion
     }

@@ -31,4 +31,8 @@ export class ApiUrlBuilder {
     insertUserArtists(): string {
         return this.baseUrl + "/userArtists";
     }
+
+    updateUser():string{
+        return this.baseUrl + "/users/update";
+    }
 }

@@ -78,8 +78,8 @@ namespace EmotionBasedMusicPlayer.Controllers
             return BusinessContext.UserBusiness.ReadByID(username);
         }
 
-        [HttpPut]
-        [Route("")]
+        [HttpPost]
+        [Route("update")]
         public void Update([FromBody]User user)
         {
             BusinessContext.UserBusiness.Update(user);

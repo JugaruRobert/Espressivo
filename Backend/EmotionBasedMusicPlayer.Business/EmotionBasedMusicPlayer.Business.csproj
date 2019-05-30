@@ -72,7 +72,7 @@
     <Compile Include="GenreBusiness.cs" />
     <Compile Include="UserArtistBusiness.cs" />
     <Compile Include="UserBusiness.cs" />
-    <Compile Include="UserGenreBuisness.cs" />
+    <Compile Include="UserGenreBusiness.cs" />
     <Compile Include="Utils\Client\EmotionRecognitionClient.cs" />
     <Compile Include="Core\BusinessContext.cs" />
     <Compile Include="Core\BusinessObject.cs" />
