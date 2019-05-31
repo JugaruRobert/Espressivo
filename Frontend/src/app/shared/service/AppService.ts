@@ -36,6 +36,7 @@ export class AppService {
                 const helper = new JwtHelperService();
                 const decodedToken = helper.decodeToken(token);
                 var user = new User();
+                user.ID = decodedToken.nameid;
                 user.Username = username;
                 user.Email = decodedToken.email;
                 user.Token = token;
@@ -71,6 +72,7 @@ export class AppService {
                 const decodedToken = helper.decodeToken(token);
                 
                 var user = new User();
+                user.ID = decodedToken.nameid;
                 user.Username = username;
                 user.Email = decodedToken.email;
                 user.Token = token;
@@ -99,44 +101,28 @@ export class AppService {
         return this.http.get(this.urlBuilder.artists(),requestOptions);
     }
 
-    insertUserArtists(username:string,artists:any[]){
+    insertUserArtists(userID:string,artists:any[]){
         const data = {
-            'username': username,
+            'userID': userID,
             'artists': artists
         }
-        return this.http.post(this.urlBuilder.insertUserArtists(),data).subscribe();
+        return this.http.post(this.urlBuilder.insertUserArtists(),data);
     }
 
-    insertUserGenres(username:string,genres:string[]){
+    insertUserGenres(userID:string,genres:string[]){
         const data = {
-            'username': username,
+            'userID': userID,
             'genres': genres
         }
-        return this.http.post(this.urlBuilder.insertUserGenres(),data).subscribe();
+        return this.http.post(this.urlBuilder.insertUserGenres(),data);
     }
 
-    updateUser(username:string,email:string){
+    updateUser(userID:string,username:string,email:string){
         const data = {
+            'userID':userID,
             'username': username,
             'email': email
         }
-        return this.http.post(this.urlBuilder.updateUser(),data).subscribe();//() =>{
-        //     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        //     if(currentUser)
-        //     {
-        //       var user = new User();
-        //       //user.Username = this.usernameValue;
-        //       //user.Email = this.emailValue
-        //       user.Token = currentUser.Token;
-      
-        //       localStorage.setItem('currentUser', JSON.stringify(user));
-        //     }
-        //     else
-        //     {
-        //       //this.openSnackBar("An error has occured!");
-        //       this.logout();
-        //       //this.router.navigate([]);
-        //     }
-        //   });
+        return this.http.post(this.urlBuilder.updateUser(),data);
     }
 }

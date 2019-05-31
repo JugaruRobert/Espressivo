@@ -38,7 +38,7 @@ namespace EmotionBasedMusicPlayer.Controllers
                 throw new HttpResponseException(response);
             }
 
-            return JwtTokenLibrary.GenerateToken(username, user.Email, password);
+            return JwtTokenLibrary.GenerateToken(user.UserID, username, user.Email, password);
         } 
         #endregion
     }

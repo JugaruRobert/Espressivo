@@ -22,6 +22,7 @@ namespace EmotionBasedMusicPlayer.Controllers
         public void Insert([FromBody]User user)
         {
             user.Password = AesEncryption.Encrypt(user.Password);
+            user.UserID = Guid.NewGuid();
             BusinessContext.UserBusiness.Insert(user);
         }
 
@@ -42,7 +43,8 @@ namespace EmotionBasedMusicPlayer.Controllers
 
             password = AesEncryption.Encrypt(password);
             BusinessContext context = new BusinessContext();
-            User user = context.UserBusiness.ReadByUsernameAndEmail(username,email);
+            Guid userID = Guid.NewGuid();
+            User user = context.UserBusiness.ReadByUsernameOrEmail(userID,username, email);
             if (user != null)
             {
                 string errorMessage = String.Empty;
@@ -56,12 +58,13 @@ namespace EmotionBasedMusicPlayer.Controllers
 
             context.UserBusiness.Insert(new Models.User()
             {
+                UserID = userID,
                 Username = username,
                 Email = email,
                 Password = password
             });
 
-            return JwtTokenLibrary.GenerateToken(username, email, password);
+            return JwtTokenLibrary.GenerateToken(userID,username, email, password);
         }
 
         [HttpGet]
@@ -72,24 +75,50 @@ namespace EmotionBasedMusicPlayer.Controllers
         }
 
         [HttpGet]
-        [Route("{username}")]
-        public User ReadByID(string username)
+        [Route("{userID:Guid}")]
+        public User ReadByID(Guid userID)
         {
-            return BusinessContext.UserBusiness.ReadByID(username);
+            return BusinessContext.UserBusiness.ReadByID(userID);
+        }
+
+
+        [HttpGet]
+        [Route("{username}")]
+        public User ReadByUsername(string username)
+        {
+            return BusinessContext.UserBusiness.ReadByUsername(username);
         }
 
         [HttpPost]
         [Route("update")]
         public void Update([FromBody]User user)
         {
+            User existingUser = BusinessContext.UserBusiness.ReadByUsernameOrEmail(user.UserID, user.Username, user.Email);
+            if (existingUser != null)
+            {
+                string errorMessage = String.Empty;
+                if (user.Username == existingUser.Username)
+                    errorMessage = "Error.ExistingUsername";
+                else if (user.Email == existingUser.Email)
+                    errorMessage = "Error.ExistingEmail";
+                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, errorMessage);
+                throw new HttpResponseException(response);
+            }
             BusinessContext.UserBusiness.Update(user);
+        }
+
+        [HttpDelete]
+        [Route("{userID:Guid}")]
+        public void Delete(Guid userID)
+        {
+            BusinessContext.UserBusiness.DeleteByID(userID);
         }
 
         [HttpDelete]
         [Route("{username}")]
         public void Delete(string username)
         {
-            BusinessContext.UserBusiness.Delete(username);
+            BusinessContext.UserBusiness.DeleteByUsername(username);
         }
         #endregion
     }

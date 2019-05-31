@@ -25,17 +25,17 @@ namespace EmotionBasedMusicPlayer.Controllers
         }
 
         [HttpDelete]
-        [Route("{username}/{genreID:Guid}")]
-        public void Delete(string username, Guid genreID)
+        [Route("{userID:Guid}/{genreID:Guid}")]
+        public void Delete(Guid userID, Guid genreID)
         {
-            BusinessContext.UserGenreBusiness.Delete(username, genreID);
+            BusinessContext.UserGenreBusiness.Delete(userID, genreID);
         }
 
         [HttpDelete]
-        [Route("{username}")]
-        public void DeleteByUsername(string username)
+        [Route("{userID:Guid}")]
+        public void DeleteByUsername(Guid userID)
         {
-            BusinessContext.UserGenreBusiness.DeleteByUsername(username);
+            BusinessContext.UserGenreBusiness.DeleteByUserID(userID);
         }
 
         [HttpGet]
@@ -46,10 +46,10 @@ namespace EmotionBasedMusicPlayer.Controllers
         }
 
         [HttpGet]
-        [Route("{name}")]
-        public UserGenre ReadByUsername(string name)
+        [Route("{userID:Guid}")]
+        public UserGenre ReadByUsername(Guid userID)
         {
-            return BusinessContext.UserGenreBusiness.ReadByUsername(name);
+            return BusinessContext.UserGenreBusiness.ReadByUserID(userID);
         }
         #endregion
     }

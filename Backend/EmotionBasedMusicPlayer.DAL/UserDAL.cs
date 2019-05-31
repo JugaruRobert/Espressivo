@@ -22,14 +22,21 @@ namespace EmotionBasedMusicPlayer.DAL
             DbOperations.ExecuteCommand(_context.connectionString, "dbo.Users_Insert", user.GenerateSqlParametersFromModel().ToArray());
         }
 
-        public void Update(User user)
+        public void Update(Guid userID, string username, string email)
         {
-            DbOperations.ExecuteCommand(_context.connectionString, "dbo.Users_Update", user.GenerateSqlParametersFromModel().ToArray());
+            DbOperations.ExecuteCommand(_context.connectionString, "dbo.Users_Update", new SqlParameter("UserID", userID),
+                                                                                       new SqlParameter("Username", username),
+                                                                                       new SqlParameter("Email", email));
         }
 
-        public void Delete(string username)
+        public void DeleteByUsername(string username)
         {
-            DbOperations.ExecuteCommand(_context.connectionString, "dbo.Users_Remove", new SqlParameter("Username", username));
+            DbOperations.ExecuteCommand(_context.connectionString, "dbo.Users_RemoveByUsername", new SqlParameter("Username", username));
+        }
+
+        public void DeleteByID(Guid userID)
+        {
+            DbOperations.ExecuteCommand(_context.connectionString, "dbo.Users_RemoveByID", new SqlParameter("UserID", userID));
         }
 
         public IEnumerable<User> ReadAll()
@@ -42,14 +49,21 @@ namespace EmotionBasedMusicPlayer.DAL
             return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_Read", new SqlParameter("Username", username), new SqlParameter("Password", password)).FirstOrDefault();
         }
 
-        public User ReadByUsernameAndEmail(string username, string email)
+        public User ReadByUsernameOrEmail(Guid userID,string username, string email)
         {
-            return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByUsernameAndEmail", new SqlParameter("Username", username), new SqlParameter("Email", email)).FirstOrDefault();
+            return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByUsernameOrEmail", new SqlParameter("UserID", userID),
+                                                                                                                 new SqlParameter("Username", username), 
+                                                                                                                 new SqlParameter("Email", email)).FirstOrDefault();
         }
 
-        public User ReadByID(string username)
+        public User ReadByUsername(string username)
         {
-            return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByID", new SqlParameter("Username", username)).FirstOrDefault();
+            return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByUsername", new SqlParameter("Username", username)).FirstOrDefault();
+        }
+
+        public User ReadByID(Guid userID)
+        {
+            return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByID", new SqlParameter("UserID", userID)).FirstOrDefault();
         }
         #endregion
     }

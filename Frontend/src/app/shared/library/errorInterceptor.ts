@@ -17,13 +17,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 switch(err.error.Message){
                     case "Error.ExistingUsername":
                     {
-                        this.service.logout();
                         this.openSnackBar("There is already an user with this username. Please choose a different one and try again!");
                         break;
                     }
                     case "Error.ExistingEmail":
                     {
-                        this.service.logout();
                         this.openSnackBar("There is already an user with this email. Please choose a different one and try again!");
                         break;
                     }

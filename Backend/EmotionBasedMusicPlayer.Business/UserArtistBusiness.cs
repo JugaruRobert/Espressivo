@@ -17,7 +17,7 @@ namespace EmotionBasedMusicPlayer.Business
         #region Methods
         public void Insert(UserArtistPreferences userArtists)
         {
-            _context.DALContext.UserArtistDAL.DeleteByUsername(userArtists.Username);
+            _context.DALContext.UserArtistDAL.DeleteByUserID(userArtists.UserID);
             foreach (Artist artist in userArtists.Artists)
             {
                 Artist existingArtist = _context.DALContext.ArtistDAL.ReadByID(artist.ArtistID);
@@ -25,20 +25,20 @@ namespace EmotionBasedMusicPlayer.Business
                     _context.DALContext.ArtistDAL.Insert(artist);
 
                 _context.DALContext.UserArtistDAL.Insert(new UserArtist(){
-                    Username = userArtists.Username,
+                    UserID = userArtists.UserID,
                     ArtistID = artist.ArtistID
                 });
             }
         }
 
-        public void Delete(string username, string artistID)
+        public void Delete(Guid userID, string artistID)
         {
-            _context.DALContext.UserArtistDAL.Delete(username, artistID);
+            _context.DALContext.UserArtistDAL.Delete(userID, artistID);
         }
 
-        public void DeleteByUsername(string username)
+        public void DeleteByUserID(Guid userID)
         {
-            _context.DALContext.UserArtistDAL.DeleteByUsername(username);
+            _context.DALContext.UserArtistDAL.DeleteByUserID(userID);
         }
 
         public IEnumerable<UserArtist> ReadAll()
@@ -46,9 +46,9 @@ namespace EmotionBasedMusicPlayer.Business
             return _context.DALContext.UserArtistDAL.ReadAll();
         }
 
-        public UserGenre ReadByUsername(string name)
+        public UserGenre ReadByUserID(Guid userID)
         {
-            return _context.DALContext.UserArtistDAL.ReadByUsername(name);
+            return _context.DALContext.UserArtistDAL.ReadByUserID(userID);
         }
         #endregion
     }

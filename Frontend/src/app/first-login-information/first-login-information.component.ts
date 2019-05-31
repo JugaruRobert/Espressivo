@@ -83,10 +83,10 @@ export class FirstLoginInformationComponent implements OnInit {
     if(currentUser)
     {
       if(this.selectedArtists.length > 0)
-        this.service.insertUserArtists(currentUser.Username, this.selectedArtists);
+        this.service.insertUserArtists(currentUser.ID, this.selectedArtists).subscribe();
 
       if(this.selectedGenres.length > 0)
-        this.service.insertUserGenres(currentUser.Username, this.selectedGenres);
+        this.service.insertUserGenres(currentUser.ID, this.selectedGenres).subscribe();
       
       this.router.navigate(['dashboard']);
     }

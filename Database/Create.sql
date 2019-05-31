@@ -14,10 +14,11 @@ IF OBJECT_ID('dbo.Genres', 'U') IS NOT NULL
 		DROP TABLE dbo.Genres;
 
 CREATE TABLE [Users] (
-	[Username] NVARCHAR(20),
-	[Email] NVARCHAR(50),
+	[UserID] uniqueidentifier,
+	[Username] NVARCHAR(20) UNIQUE,
+	[Email] NVARCHAR(50) UNIQUE,
 	[Password] NVARCHAR(max),
-	CONSTRAINT [PK_Users] PRIMARY KEY ([Username])
+	CONSTRAINT [PK_Users] PRIMARY KEY ([UserID])
 );
 
 CREATE TABLE [Artists] (
@@ -33,21 +34,21 @@ CREATE TABLE [Genres] (
 );
 
 CREATE TABLE [UsersArtists](
-	[Username] NVARCHAR(20),
+	[UserID] UNIQUEIDENTIFIER,
 	[ArtistID] NVARCHAR(50),
-	CONSTRAINT [PK_UsersArtists] PRIMARY KEY ([Username],[ArtistID]),
-	CONSTRAINT [FK_UsersArtists] FOREIGN KEY ([Username])
-		REFERENCES [Users]([Username]) ON DELETE CASCADE,
+	CONSTRAINT [PK_UsersArtists] PRIMARY KEY ([UserID],[ArtistID]),
+	CONSTRAINT [FK_UsersArtists] FOREIGN KEY ([UserID])
+		REFERENCES [Users]([UserID]) ON DELETE CASCADE,
 	CONSTRAINT [FK_ArtistsUsers] FOREIGN KEY ([ArtistID])
 		REFERENCES [Artists]([ArtistID]) ON DELETE CASCADE
 );
 
 CREATE TABLE [UsersGenres](
-	[Username] NVARCHAR(20),
+	[UserID] UNIQUEIDENTIFIER,
 	[GenreID] UNIQUEIDENTIFIER,
-	CONSTRAINT [PK_UsersGenres] PRIMARY KEY ([Username],[GenreID]),
-	CONSTRAINT [FK_UsersGenres] FOREIGN KEY ([Username])
-		REFERENCES [Users]([Username]) ON DELETE CASCADE,
+	CONSTRAINT [PK_UsersGenres] PRIMARY KEY ([UserID],[GenreID]),
+	CONSTRAINT [FK_UsersGenres] FOREIGN KEY ([UserID])
+		REFERENCES [Users]([UserID]) ON DELETE CASCADE,
 	CONSTRAINT [FK_GenresUsers] FOREIGN KEY ([GenreID])
 		REFERENCES [Genres]([GenreID]) ON DELETE CASCADE
 );

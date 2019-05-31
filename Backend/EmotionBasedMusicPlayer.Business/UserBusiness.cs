@@ -30,29 +30,34 @@ namespace EmotionBasedMusicPlayer.Business
             return _context.DALContext.UserDAL.ReadAll();
         }
 
-        public User ReadByID(string username)
+        public User ReadByUsername(string username)
         {
-            return _context.DALContext.UserDAL.ReadByID(username);
+            return _context.DALContext.UserDAL.ReadByUsername(username);
         }
 
-        public User ReadByUsernameAndEmail(string username,string email)
+        public User ReadByID(Guid userID)
         {
-            return _context.DALContext.UserDAL.ReadByUsernameAndEmail(username,email);
+            return _context.DALContext.UserDAL.ReadByID(userID);
+        }
+
+        public User ReadByUsernameOrEmail(Guid userID,string username,string email)
+        {
+            return _context.DALContext.UserDAL.ReadByUsernameOrEmail(userID,username, email);
         }
 
         public void Update(User user)
         {
-            User existingUser = _context.DALContext.UserDAL.ReadByUsernameAndEmail(user.Username, user.Email);
-            if (existingUser != null)
-            {
-                user.Password = existingUser.Password;
-                _context.DALContext.UserDAL.Update(user);
-            }
+            _context.DALContext.UserDAL.Update(user.UserID, user.Username, user.Email);
         }
 
-        public void Delete(string username)
+        public void DeleteByUsername(string username)
         {
-            _context.DALContext.UserDAL.Delete(username);
+            _context.DALContext.UserDAL.DeleteByUsername(username);
+        }
+
+        public void DeleteByID(Guid userID)
+        {
+            _context.DALContext.UserDAL.DeleteByID(userID);
         }
         #endregion
     }

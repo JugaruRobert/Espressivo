@@ -17,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { JwtInterceptor } from './shared/library/jwtInterceptor';
-import { ErrorInterceptor } from './shared/library/errorInterceptop';
+import { ErrorInterceptor } from './shared/library/errorInterceptor';
 import { AppService } from './shared/service/AppService';
 import { ApiUrlBuilder } from './shared/service/ApiUrlBuilder';
 import { FirstLoginInformationComponent } from './first-login-information/first-login-information.component';

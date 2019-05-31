@@ -3,27 +3,28 @@ GO
 
 --Users
 CREATE PROCEDURE [Users_Insert]
+	@UserID UNIQUEIDENTIFIER,
 	@Username NVARCHAR(20),
 	@Email NVARCHAR(50),
 	@Password NVARCHAR(max)
 AS
 BEGIN
-	INSERT INTO Users([Username],[Email],[Password])
-	VALUES (@Username,@Email,@Password)
+	INSERT INTO Users([UserID],[Username],[Email],[Password])
+	VALUES (@UserID,@Username,@Email,@Password)
 END
 GO
 
-CREATE PROCEDURE [Users_ReadByUsernameAndEmail]
+CREATE PROCEDURE [Users_ReadByUsernameOrEmail]
+	@UserID UNIQUEIDENTIFIER,
 	@Username NVARCHAR(20),
 	@Email NVARCHAR(50)
 AS
 BEGIN
 	SELECT *
 	FROM [Users]
-	WHERE [Username] = @Username OR [Email] = @Email
+	WHERE ([Username] = @Username OR [Email] = @Email) AND [UserID] <> @UserID
 END
 GO
-
 
 CREATE PROCEDURE [Users_Read]
 	@Username NVARCHAR(20),
@@ -43,7 +44,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [Users_ReadByID]
+CREATE PROCEDURE [Users_ReadByUsername]
 	@Username NVARCHAR(20)
 AS
 BEGIN
@@ -53,19 +54,38 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [Users_Update]
-	@Username NVARCHAR(20),
-	@Email NVARCHAR(50),
-	@Password NVARCHAR(max)
+CREATE PROCEDURE [Users_ReadByID]
+	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
-	UPDATE [Users]
-	SET [Email]=@Email,[Password] = @Password
-	WHERE [Username] = @Username
+	SELECT *
+	FROM [Users]
+	WHERE [UserID] = @UserID
 END
 GO
 
-CREATE PROCEDURE [Users_Remove]
+CREATE PROCEDURE [Users_Update]
+	@UserID uniqueidentifier,
+	@Username NVARCHAR(20),
+	@Email NVARCHAR(50)
+AS
+BEGIN
+	UPDATE [Users]
+	SET [Email]=@Email,[Username] = @Username
+	WHERE [UserID] = @UserID
+END
+GO
+
+CREATE PROCEDURE [Users_RemoveByID]
+	@UserID uniqueidentifier
+AS
+BEGIN
+	DELETE FROM [Users]
+	WHERE [UserID] = @UserID
+END
+GO
+
+CREATE PROCEDURE [Users_RemoveByUsername]
 	@Username NVARCHAR(20)
 AS
 BEGIN
@@ -210,12 +230,12 @@ GO
 
 --UsersGenres
 CREATE PROCEDURE [UsersGenres_Insert]
-	@Username NVARCHAR(20),
+	@UserID UNIQUEIDENTIFIER,
 	@GenreID UNIQUEIDENTIFIER
 AS
 BEGIN
-	INSERT INTO UsersGenres([Username],[GenreID])
-	VALUES (@Username,@GenreID)
+	INSERT INTO UsersGenres([UserID],[GenreID])
+	VALUES (@UserID,@GenreID)
 END
 GO
 
@@ -226,43 +246,43 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [UsersGenres_ReadByUsername]
-	@Username NVARCHAR(50)
+CREATE PROCEDURE [UsersGenres_ReadByUserID]
+	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
 	SELECT *
 	FROM [UsersGenres]
-	WHERE [Username] = @Username
+	WHERE [UserID] = @UserID
 END
 GO
 
 CREATE PROCEDURE [UsersGenres_Remove]
-	@Username NVARCHAR(20),
+	@UserID UNIQUEIDENTIFIER,
 	@GenreID UNIQUEIDENTIFIER
 AS
 BEGIN
 	DELETE FROM [UsersGenres]
-	WHERE [Username] = @Username AND [GenreID] = @GenreID
+	WHERE [UserID] = @UserID AND [GenreID] = @GenreID
 END
 GO
 
-CREATE PROCEDURE [UsersGenres_RemoveByUsername]
-	@Username NVARCHAR(100)
+CREATE PROCEDURE [UsersGenres_RemoveByUserID]
+	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
 	DELETE FROM [UsersGenres]
-	WHERE [Username] = @Username
+	WHERE [UserID] = @UserID
 END
 GO
 
 --UsersArtists
 CREATE PROCEDURE [UsersArtists_Insert]
-	@Username NVARCHAR(20),
+	@UserID UNIQUEIDENTIFIER,
 	@ArtistID NVARCHAR(50)
 AS
 BEGIN
-	INSERT INTO UsersArtists([Username],[ArtistID])
-	VALUES (@Username,@ArtistID)
+	INSERT INTO UsersArtists([UserID],[ArtistID])
+	VALUES (@UserID,@ArtistID)
 END
 GO
 
@@ -273,31 +293,31 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [UsersArtists_ReadByUsername]
-	@Username NVARCHAR(50)
+CREATE PROCEDURE [UsersArtists_ReadByUserID]
+	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
 	SELECT *
 	FROM [UsersArtists]
-	WHERE [Username] = @Username
+	WHERE [UserID] = @UserID
 END
 GO
 
 CREATE PROCEDURE [UsersArtists_Remove]
-	@Username NVARCHAR(20),
+	@UserID UNIQUEIDENTIFIER,
 	@ArtistID NVARCHAR(50)
 AS
 BEGIN
 	DELETE FROM [UsersArtists]
-	WHERE [Username] = @Username AND [ArtistID] = @ArtistID
+	WHERE [UserID] = @UserID AND [ArtistID] = @ArtistID
 END
 GO
 
-CREATE PROCEDURE [UsersArtists_RemoveByUsername]
-	@Username NVARCHAR(100)
+CREATE PROCEDURE [UsersArtists_RemoveByUserID]
+	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
 	DELETE FROM [UsersArtists]
-	WHERE [Username] = @Username
+	WHERE [UserID] = @UserID
 END
 GO

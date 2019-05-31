@@ -11,6 +11,9 @@ namespace EmotionBasedMusicPlayer.Models
     public class User
     {
         #region Properties
+        [DataMember(Name = "UserID")]
+        public Guid UserID { get; set; }
+
         [DataMember (Name ="Username")]
         public string Username { get; set; }
 

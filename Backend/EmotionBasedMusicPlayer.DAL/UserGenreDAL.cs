@@ -22,14 +22,14 @@ namespace EmotionBasedMusicPlayer.DAL
             DbOperations.ExecuteCommand(_context.connectionString, "dbo.UsersGenres_Insert", userGenre.GenerateSqlParametersFromModel().ToArray());
         }
 
-        public void Delete(string username, Guid genreID)
+        public void Delete(Guid userID, Guid genreID)
         {
-            DbOperations.ExecuteCommand(_context.connectionString, "dbo.UsersGenres_Remove", new SqlParameter("Username", username), new SqlParameter("GenreID", genreID));
+            DbOperations.ExecuteCommand(_context.connectionString, "dbo.UsersGenres_Remove", new SqlParameter("UserID", userID), new SqlParameter("GenreID", genreID));
         }
 
-        public void DeleteByUsername(string username)
+        public void DeleteByUserID(Guid userID)
         {
-            DbOperations.ExecuteCommand(_context.connectionString, "dbo.UsersGenres_RemoveByUsername", new SqlParameter("Username", username));
+            DbOperations.ExecuteCommand(_context.connectionString, "dbo.UsersGenres_RemoveByUserID", new SqlParameter("UserID", userID));
         }
 
         public IEnumerable<UserGenre> ReadAll()
@@ -37,9 +37,9 @@ namespace EmotionBasedMusicPlayer.DAL
             return DbOperations.ExecuteQuery<UserGenre>(_context.connectionString, "dbo.UsersGenres_ReadAll");
         }
 
-        public UserGenre ReadByUsername(string name)
+        public UserGenre ReadByUserID(Guid userID)
         {
-            return DbOperations.ExecuteQuery<UserGenre>(_context.connectionString, "dbo.UsersGenres_ReadByUsername", new SqlParameter("Username", name)).FirstOrDefault();
+            return DbOperations.ExecuteQuery<UserGenre>(_context.connectionString, "dbo.UsersGenres_ReadByUserID", new SqlParameter("UserID", userID)).FirstOrDefault();
         }
         #endregion
     }

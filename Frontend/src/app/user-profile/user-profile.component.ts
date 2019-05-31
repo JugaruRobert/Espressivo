@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { Component, OnInit, Inject, ViewChild, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
 import { DialogData } from '../app.component';
 import { FormControl, FormGroup, Validators, FormBuilder, EmailValidator } from '@angular/forms';
 import { AppService } from '../shared/service/AppService';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/User';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,11 +13,14 @@ import { User } from '../shared/models/User';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  @Output() 
   public genres: any[];
   public artists: string[];
   public selectedArtists: any[] = [];
   public selectedGenres: any[] = [];
   public searchArtist: FormControl = new FormControl();
+  private calls = 0;
+  private successSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   profileSettingsForm: FormGroup;
   submitted = false;
   
@@ -28,7 +32,16 @@ export class UserProfileComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private service:AppService,
               private snackBar: MatSnackBar,
-              private router:Router) { }
+              private router:Router,
+              private dialogRef: MatDialogRef<UserProfileComponent>) { 
+                this.successSubject.asObservable().subscribe(() =>
+                  {
+                    if (this.successSubject.value === 3) {
+                      this.dialogRef.close();
+                    }
+                  }
+                )
+              }
 
   ngOnInit() {
     $("#closeDialog").blur()
@@ -113,8 +126,9 @@ export class UserProfileComponent implements OnInit {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(currentUser)
     {
-      this.updateUserInformation();
-      //this.updatePreferences(currentUser.Username);
+      this.successSubject.next(0);
+      this.updateUserInformation(currentUser.ID);
+      this.updatePreferences(currentUser.ID);
     }
     else
     {
@@ -124,20 +138,47 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  updateUserInformation(){
+  updateUserInformation(userID:string){
     this.usernameValue = this.profileSettingsForm.get('username').value;
     this.emailValue = this.profileSettingsForm.get('email').value;
 
-    this.service.updateUser(this.usernameValue,this.emailValue);
+    this.service.updateUser(userID,this.usernameValue,this.emailValue).subscribe(()=>{
+      this.successSubject.next(this.successSubject.value + 1);
+      this.updateLocalUser();
+    });
   }
 
-  updatePreferences(username:string)
+  updateLocalUser(){
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(currentUser)
+    {
+      var user = new User();
+      user.ID = currentUser.ID;
+      user.Username = this.usernameValue;
+      user.Email = this.emailValue
+      user.Token = currentUser.Token;
+
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+    else
+    {
+      this.openSnackBar("An error has occured!");
+      this.service.logout();
+      this.router.navigate([]);
+    }
+  }
+       
+  updatePreferences(userID:string)
   {
     if(this.selectedArtists.length > 0)
-      this.service.insertUserArtists(username, this.selectedArtists);
+      this.service.insertUserArtists(userID, this.selectedArtists).subscribe(()=>{
+        this.successSubject.next(this.successSubject.value + 1);
+      });
 
     if(this.selectedGenres.length > 0)
-      this.service.insertUserGenres(username, this.selectedGenres);
+      this.service.insertUserGenres(userID, this.selectedGenres).subscribe(()=>{
+        this.successSubject.next(this.successSubject.value + 1);
+      });
   }
 
   private openSnackBar(message: string) {
@@ -157,8 +198,5 @@ export class UserProfileComponent implements OnInit {
       if(index != -1)
         this.selectedGenres.splice(index, 1);
     }
-  }
-
-  closeDialog(){
   }
 }
