@@ -14,14 +14,22 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   public tracks: any[] = [];
-  
+  private userGenres = [];
+  private allGenres = [];
+  private userArtists = [];
+
   constructor(public dialog: MatDialog,
     private appService: AppService,
     private router: Router) {}
 
    openUserProfileModal(): void {
     const dialogRef = this.dialog.open(UserProfileComponent, {
-      width: '700px'
+      width: '700px',
+      data: { 
+        allGenres: this.allGenres,
+        userGenres: this.userGenres,
+        userArtists: this.userArtists
+      }
     });
   }
 
@@ -31,13 +39,36 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    //$("#equalizerLogo").hide();
+    this.getAllGenres();
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser)
       this.router.navigate(['']);
+    else
+      this.getUserPreferences(currentUser.ID);
+  }
+
+  getUserPreferences(userID:string){
+    this.appService.getPreferences(userID).subscribe((data) =>{
+      this.userArtists = data.Artists;
+      this.userGenres = data.Genres.map(genre => genre.Name);
+      
+      if(this.userArtists.length == 0 && this.userGenres.length == 0)
+      {
+        this.router.navigate(['preferences']);
+      }
+    })
+  }
+
+  getAllGenres(){
+    this.appService.getGenres().subscribe(genres => {
+        this.allGenres = genres;
+    });
   }
 
   getRecommendations(): void{
    this.appService.getRecommendations().subscribe((data) => {
+    $("#equalizerLogo").hide();
      if(this.tracks.length == 0)
      {
        this.tracks = data;
@@ -51,6 +82,6 @@ export class DashboardComponent implements OnInit {
         data.forEach(element => {
             this.tracks.push(element);
         });   
-      console.log(this.tracks)});
+    });
   }
 }

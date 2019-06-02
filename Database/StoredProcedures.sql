@@ -250,9 +250,10 @@ CREATE PROCEDURE [UsersGenres_ReadByUserID]
 	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
-	SELECT *
-	FROM [UsersGenres]
-	WHERE [UserID] = @UserID
+	SELECT g.[Name]
+	FROM [UsersGenres] ug
+	INNER JOIN [Genres] g ON ug.GenreID = g.GenreID
+	WHERE ug.[UserID] = @UserID
 END
 GO
 
@@ -297,9 +298,10 @@ CREATE PROCEDURE [UsersArtists_ReadByUserID]
 	@UserID UNIQUEIDENTIFIER
 AS
 BEGIN
-	SELECT *
-	FROM [UsersArtists]
-	WHERE [UserID] = @UserID
+	SELECT ua.[ArtistID],a.[Name]
+	FROM [UsersArtists] ua
+	INNER JOIN [Artists] a ON ua.ArtistID = a.ArtistID
+	WHERE ua.[UserID] = @UserID
 END
 GO
 

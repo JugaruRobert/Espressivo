@@ -20,6 +20,15 @@ namespace EmotionBasedMusicPlayer.Business
             return _context.DALContext.UserDAL.ReadUser(username, password);
         }
 
+        public UserPreferences GetPreferences(Guid userID)
+        {
+            return new UserPreferences()
+            {
+                Artists = _context.DALContext.UserArtistDAL.ReadByUserID(userID),
+                Genres = _context.DALContext.UserGenreDAL.ReadByUserID(userID)
+            };
+        }
+
         public void Insert(User user)
         {
             _context.DALContext.UserDAL.Insert(user);

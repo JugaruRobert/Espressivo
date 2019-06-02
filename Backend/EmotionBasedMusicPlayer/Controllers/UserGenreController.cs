@@ -47,7 +47,7 @@ namespace EmotionBasedMusicPlayer.Controllers
 
         [HttpGet]
         [Route("{userID:Guid}")]
-        public UserGenre ReadByUsername(Guid userID)
+        public IEnumerable<GenreName> ReadByUserID(Guid userID)
         {
             return BusinessContext.UserGenreBusiness.ReadByUserID(userID);
         }

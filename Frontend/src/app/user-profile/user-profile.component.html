@@ -34,7 +34,7 @@
         
         <div id="genresContainer">
           <div *ngFor="let genre of genres">
-            <mat-checkbox (change)="genreCheckboxChange($event.checked,genre)">{{genre | titlecase}}</mat-checkbox>
+            <mat-checkbox [checked]="isChecked(genre | titlecase)" (change)="genreCheckboxChange($event.checked,genre)">{{genre | titlecase}}</mat-checkbox>
           </div>
         </div>
       </mat-expansion-panel>

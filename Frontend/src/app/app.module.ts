@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatMenuModule, MatIconModule, MatDialogModule, MatButtonModule, MatSliderModule, MatProgressBarModule, MatTabsModule, MatSnackBarModule, MatExpansionModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule} from '@angular/material';
+import {MatMenuModule, MatIconModule, MatDialogModule, MatButtonModule, MatSliderModule, MatProgressBarModule, MatTabsModule, MatSnackBarModule, MatExpansionModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule, MatProgressSpinnerModule} from '@angular/material';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -53,7 +53,8 @@ import { FirstLoginInformationComponent } from './first-login-information/first-
     MatExpansionModule,
     MatInputModule,
     MatCheckboxModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [UserProfileComponent],
   providers: [

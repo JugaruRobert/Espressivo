@@ -52,7 +52,7 @@ namespace EmotionBasedMusicPlayer.Business
             return _context.DALContext.UserGenreDAL.ReadAll();
         }
 
-        public UserGenre ReadByUserID(Guid userID)
+        public IEnumerable<GenreName> ReadByUserID(Guid userID)
         {
             return _context.DALContext.UserGenreDAL.ReadByUserID(userID);
         }

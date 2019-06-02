@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   public selectedArtists: any[] = [];
   public selectedGenres: any[] = [];
   public searchArtist: FormControl = new FormControl();
-  private calls = 0;
+  private numberCalls = 0;
   private successSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   profileSettingsForm: FormGroup;
   submitted = false;
@@ -29,14 +29,15 @@ export class UserProfileComponent implements OnInit {
   private searchHandler:any;
   private searchDelay: number = 500;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              private formBuilder: FormBuilder,
               private service:AppService,
               private snackBar: MatSnackBar,
               private router:Router,
               private dialogRef: MatDialogRef<UserProfileComponent>) { 
                 this.successSubject.asObservable().subscribe(() =>
                   {
-                    if (this.successSubject.value === 3) {
+                    if (this.numberCalls > 0 && this.successSubject.value === this.numberCalls) {
                       this.dialogRef.close();
                     }
                   }
@@ -50,7 +51,30 @@ export class UserProfileComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]]
     });
     this.setUserData();
-    this.getGenres();
+    this.populateData();
+  }
+
+  populateData(){
+    if(this.data.allGenres)
+      this.genres = this.data.allGenres;
+    else
+      this.getGenres();
+
+    if(this.data.userArtists)
+      this.selectedArtists = this.data.userArtists;
+    else
+      this.closeDialogAndShowError();
+
+    if(this.data.userGenres)
+      this.selectedGenres = this.data.userGenres;
+    else
+      this.closeDialogAndShowError();
+  }
+
+  closeDialogAndShowError(){
+    this.dialogRef.close();
+    this.openSnackBar("An error has occured!");
+    location.reload();
   }
 
   setUserData(){
@@ -127,6 +151,7 @@ export class UserProfileComponent implements OnInit {
     if(currentUser)
     {
       this.successSubject.next(0);
+      this.numberCalls == 0;
       this.updateUserInformation(currentUser.ID);
       this.updatePreferences(currentUser.ID);
     }
@@ -142,6 +167,7 @@ export class UserProfileComponent implements OnInit {
     this.usernameValue = this.profileSettingsForm.get('username').value;
     this.emailValue = this.profileSettingsForm.get('email').value;
 
+    this.numberCalls++;
     this.service.updateUser(userID,this.usernameValue,this.emailValue).subscribe(()=>{
       this.successSubject.next(this.successSubject.value + 1);
       this.updateLocalUser();
@@ -171,18 +197,24 @@ export class UserProfileComponent implements OnInit {
   updatePreferences(userID:string)
   {
     if(this.selectedArtists.length > 0)
+    {
+      this.numberCalls++;
       this.service.insertUserArtists(userID, this.selectedArtists).subscribe(()=>{
         this.successSubject.next(this.successSubject.value + 1);
       });
+    }
 
     if(this.selectedGenres.length > 0)
+    {
+      this.numberCalls++;
       this.service.insertUserGenres(userID, this.selectedGenres).subscribe(()=>{
         this.successSubject.next(this.successSubject.value + 1);
       });
+    }
   }
 
   private openSnackBar(message: string) {
-    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 5000});
   }
 
   genreCheckboxChange(checked:boolean,genreName:string){
@@ -198,5 +230,12 @@ export class UserProfileComponent implements OnInit {
       if(index != -1)
         this.selectedGenres.splice(index, 1);
     }
+  }
+
+  isChecked(genre:string)
+  {
+    if(this.selectedGenres.indexOf(genre) != -1)
+      return true;
+    return false;
   }
 }

@@ -16,6 +16,7 @@ export class AppService {
     ){} 
 
     getRecommendations(): Observable<any> {
+        $("#equalizerLogo").show();
         return this.http.get(this.urlBuilder.recommendationsUrl());
     }
 
@@ -124,5 +125,17 @@ export class AppService {
             'email': email
         }
         return this.http.post(this.urlBuilder.updateUser(),data);
+    }
+
+    getPreferences(userID:string):Observable<any>{
+        const headerDict = {
+            'userID': userID
+        }
+
+        const requestOptions = {
+            headers: new HttpHeaders(headerDict)
+        };
+
+        return this.http.get(this.urlBuilder.preferences(),requestOptions);
     }
 }

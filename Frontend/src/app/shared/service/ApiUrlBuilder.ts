@@ -35,4 +35,8 @@ export class ApiUrlBuilder {
     updateUser():string{
         return this.baseUrl + "/users/update";
     }
+
+    preferences():string{
+        return this.baseUrl + "/users/preferences";
+    }
 }

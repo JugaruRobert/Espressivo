@@ -64,6 +64,35 @@
     justify-content: center;
 }
 
+#artistSearchContainer{
+    width: 100%;
+    color:white !important;
+    .mat-input-element{
+        caret-color:white !important;
+    }
+    .mat-form-field-label {
+        color: white;
+    }
+    .mat-form-field-underline {
+        background-color: white;
+        &:focus {
+            background-color: white;
+        }
+    }
+    span.mat-form-field-ripple {
+        background-color: white !important;
+    }
+    &.mat-form-field-should-float .mat-form-field-label-wrapper {display: none !important}
+}
+
+.mat-autocomplete-panel.mat-autocomplete-visible{
+    background-color: $brand-dark;
+}
+
+.mat-option-text{
+    color:white !important;
+}
+
 #genresContainer
 {
     max-height: 250px;

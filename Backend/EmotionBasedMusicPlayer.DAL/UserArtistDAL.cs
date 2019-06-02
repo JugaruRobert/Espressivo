@@ -37,9 +37,9 @@ namespace EmotionBasedMusicPlayer.DAL
             return DbOperations.ExecuteQuery<UserArtist>(_context.connectionString, "dbo.UsersArtists_ReadAll");
         }
 
-        public UserGenre ReadByUserID(Guid userID)
+        public IEnumerable<Artist> ReadByUserID(Guid userID)
         {
-            return DbOperations.ExecuteQuery<UserGenre>(_context.connectionString, "dbo.UsersArtists_ReadByUserID", new SqlParameter("UserID", userID)).FirstOrDefault();
+            return DbOperations.ExecuteQuery<Artist>(_context.connectionString, "dbo.UsersArtists_ReadByUserID", new SqlParameter("UserID", userID));
         }
         #endregion
     }

@@ -61,6 +61,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   private openSnackBar(message: string) {
-    this.snackBar.open(message, '', {verticalPosition: "top", duration: 6000});
+    this.snackBar.open(message, '', {verticalPosition: "top", duration: 5000});
   }
 }

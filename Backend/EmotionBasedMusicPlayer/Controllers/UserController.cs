@@ -75,6 +75,19 @@ namespace EmotionBasedMusicPlayer.Controllers
         }
 
         [HttpGet]
+        [Route("preferences")]
+        public UserPreferences GetPreferences()
+        {
+            string userID = HttpContext.Current.Request.Headers["userID"];
+            if (userID == null)
+            {
+                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error.MissingUserID");
+                throw new HttpResponseException(response);
+            }
+            return BusinessContext.UserBusiness.GetPreferences(new Guid(userID));
+        }
+
+        [HttpGet]
         [Route("{userID:Guid}")]
         public User ReadByID(Guid userID)
         {
