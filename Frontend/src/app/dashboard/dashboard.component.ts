@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    //$("#equalizerLogo").hide();
+    $("#equalizerLogo").hide();
     this.getAllGenres();
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser)

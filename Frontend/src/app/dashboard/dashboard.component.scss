@@ -53,7 +53,10 @@
     min-width: 320px;
     padding: 10px 20px;
     position: relative;
-    padding-top: 35px !important
+    padding-top: 35px !important;
+    .mat-dialog-content {
+        max-height: 520px;
+    }
 }
 
 .mat-expansion-indicator:after
@@ -142,17 +145,12 @@
 $bg: rgba(44,15,15,1);
 $accent: lighten($bg, 18%);
 
-#equalizerLogo{
-    position:absolute;
-    left:35%;
-    top:30%;
-}
-
 .equalizer{
-    width: 400px;
+    width: 100%;
     min-height: 120px;
     max-height: 120px;
     display:flex;
+    justify-content: center;
 
     span{
         margin-left: 4.5px;
@@ -161,7 +159,7 @@ $accent: lighten($bg, 18%);
         display: inline-block;
         animation:up-and-down 1.6s linear infinite;
         animation-delay:calc(-1 * 0.7s * (var(--n) -1));
-        background:$accent;
+        background:$brand-darker;
     }
 }
 
