@@ -1,6 +1,32 @@
 <carousel-component [margin]="140" [mode]="'horizontal'" class="style-carousel" (onSlideChange)="slideChange($event)" #carousel id="carousel">
   <div class="item-carousel" *ngFor="let track of tracks; let i = index">
-    <img src ="{{track?.Images[0]?.Url}}" (click)="goToSlide(i)" />
+      <div class="music-player" (click)="goToSlide(i)">
+          <img src="{{track?.Images[1]?.Url}}" class="album" />
+          <div class="dash">
+            <a href="#mute" class="fa fa-volume-up"></a>
+            <span class="volume-level">
+              <em style="width: 75%"></em>
+            </span>
+            <a href="#share" class="fa fa-share"></a>
+            <a href="#love" class="fa fa-heart"></a>
+            <div class="seeker">
+              <div class="wheel">
+                <div class="progress"></div>
+              </div>
+            </div>
+            <a href="#seek"></a>
+            <div class="controls">
+              <a href="#back" class="fa fa-fast-backward"></a>
+              <a href="#play" class="fa fa-pause"></a>
+              <a href="#forward" class="fa fa-fast-forward"></a>
+            </div>
+            <div class="info">
+              <i><span name="current">0:00</span> / <span name="duration">0:00</span></i>
+              <label>Marteria - OMG</label>
+              <small>Zum Glück in die Zukunft II</small>
+            </div>
+          </div>
+        </div>
   </div>
 </carousel-component>
 <app-music-player (endVideoEmitter)="nextSlide()" *ngIf="tracks?.length>0 && currentIndex>=0" [videoId]="tracks[currentIndex]?.VideoID"></app-music-player>
