@@ -1,3 +1,5 @@
+@import "../../assets/scss/variables";
+
 #pauseAudio{
     position:absolute;
     top:57px;
@@ -9,3 +11,120 @@
     top:57px;
     left:300px;
 }
+
+#controlsMain
+{
+    width: 500px;
+    margin-left: 29px;
+}
+
+#youtubeContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: -65px;
+    min-width: 700px;
+    background-color: white;
+}
+
+#progress {
+    width: 100%;
+    background-color: rgba($serenity__2016,.2);
+  }
+  #progress-bar {
+    width: 0%;
+    height: .4rem;
+    background-color: $rose_quartz__2016;
+    
+    &.play {
+      animation: progress-bar 240s infinite;
+    }
+  }
+  
+  @keyframes progress-bar {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  #title {
+    margin: 1rem 0;
+    width: 100%;
+    overflow: hidden;
+    height: 1.1rem;
+  }
+  
+  #title-text {
+    animation: scrolling-text 16s linear infinite;
+  }
+  
+  @keyframes scrolling-text {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  #controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  $control-size: 2.7rem;
+  
+  .control {
+    width: $control-size; height: $control-size;
+    border-radius: 50%;
+    border: 1px solid;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1px;
+    transition: transform .3s, box-shadow .5s, text-shadow .5s;
+    
+    &:hover,
+    &:focus {
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 0 8px rgba(0,0,0,.5);
+      text-shadow: 0 0 8px rgba(0,0,0,.5);
+    }
+    
+    &:active {
+      transform: scale(.9);
+      box-shadow: none;
+      text-shadow: none;
+    }
+    
+    .icon {
+      font-size: $control-size;
+    }
+  }
+  
+  $controls-play-size: 4rem;
+  
+  #controls-play {
+    width: $controls-play-size; height: $controls-play-size;
+    font-size: $controls-play-size;
+    
+    .icon {
+      font-size: $controls-play-size;
+    }
+    
+    .icon-pause {
+      display: none;
+    }
+    
+    &.play {
+      .icon-pause {
+        display: block;
+      }    
+      .icon-play {
+        display: none;
+      }
+    }
+  }

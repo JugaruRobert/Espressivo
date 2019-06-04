@@ -183,7 +183,7 @@ CREATE PROCEDURE [Artists_ReadByID]
 	@ArtistID NVARCHAR(50)
 AS
 BEGIN
-	SELECT *
+	SELECT [Name]
 	FROM [Artists]
 	WHERE [ArtistID] = @ArtistID
 END

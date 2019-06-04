@@ -7,9 +7,24 @@
   >
   </youtube-player>
 
-  <div class="row">
+  <!-- <div class="row">
     <button id="pauseAudio" type="button" class="btn btn-light" (click)="pauseVideo()">Pause</button>
     <button id="playAudio" type="button" class="btn btn-light" (click)="playVideo()">Play</button>
+  </div>  -->
+  <main id="controlsMain">
+    <div id="progress">
+    <div id="progress-bar"></div>
   </div>
-
+  <div id="title">
+    <div id="title-text">Hey Girl // Florence Welch, Lady Gaga</div>
+  </div>
+  <div id="controls">
+    <div class="control"><i class="material-icons icon">&#xE045;</i></div>
+    <div class="control" id="controls-play" onclick="play()">
+      <i class="material-icons icon icon-play">&#xE037;</i>
+      <i class="material-icons icon icon-pause">&#xE034;</i>
+    </div>
+    <div class="control"><i class="material-icons icon">&#xE044;</i></div>
+  </div>
+</main>
 
