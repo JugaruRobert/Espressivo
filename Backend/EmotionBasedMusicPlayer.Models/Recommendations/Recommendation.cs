@@ -21,7 +21,7 @@ namespace EmotionBasedMusicPlayer.Models.Recommendations
         public List<AlbumImage> Images { get; set; } = new List<AlbumImage>();
 
         [DataMember]
-        public string VideoID { get; set; } 
+        public string VideoID { get; set; }
         #endregion
     }
 }

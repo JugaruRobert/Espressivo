@@ -25,7 +25,8 @@
         <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
     </div>
     <div id="carouselContainer">
-      <app-music-carousel (getMoreTracksEmitter)="getRecommendations()" [tracks]="tracks"></app-music-carousel>
+        <!-- (getMoreTracksEmitter)="getRecommendations()" -->
+      <app-music-carousel  [tracks]="tracks"></app-music-carousel>
     </div>
 </div>
 

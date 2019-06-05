@@ -3,15 +3,14 @@
 
 <carousel-component [margin]="140" [mode]="'horizontal'" class="style-carousel" (onSlideChange)="slideChange($event)" #carousel id="carousel">
   <div class="item-carousel" *ngFor="let track of tracks; let i = index">
-          <!-- <img src="{{track?.Images[1]?.Url}}" (click)="goToSlide(i);"/> -->
-          <main id="carouselItemMain">
+          <main id="carouselItemMain" (click)="goToSlide(i)">
             <img class="albumCover" src="{{track?.Images[0]?.Url}}"/>
           </main>
-
-          <!-- <main *ngIf="i != currentIndex">
-            <div id="albumCover"></div>
-          </main> -->
   </div>
 </carousel-component>
-<app-music-player (endVideoEmitter)="nextSlide()" *ngIf="tracks?.length>0 && currentIndex>=0" [videoId]="tracks[currentIndex]?.VideoID"></app-music-player>
+<app-music-player #musicPlayer (videoEmitter)="onEventReceived($event)" *ngIf="tracks?.length>0 && currentIndex>=0" 
+    [videoId]="tracks[currentIndex]?.VideoID" 
+    [title]="tracks[currentIndex]?.Title"
+    [artists]="tracks[currentIndex]?.Artists">
+</app-music-player>
 

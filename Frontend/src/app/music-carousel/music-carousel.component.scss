@@ -163,7 +163,6 @@ h1{
 #carouselItemMain {
   position: absolute;
   top: 2rem; right: 0; left: 0; bottom: 2rem;
-  // padding: 0 calc(50% - 10rem);
   text-align: center;
 }
 
@@ -173,4 +172,5 @@ h1{
   background-size: cover;
   display: inline-block;
   box-shadow: 0 2rem 4rem rgba(0,0,0,.5);
+  border-radius: 2%;
 }

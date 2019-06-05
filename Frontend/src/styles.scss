@@ -36,3 +36,11 @@ iframe{
     width:0;
     height:0;
 }
+
+::selection {
+    background: transparent;
+}
+
+::-moz-selection {
+    background: transparent;
+}

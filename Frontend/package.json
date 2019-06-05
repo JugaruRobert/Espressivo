@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@auth0/angular-jwt": "^2.1.0",
+    "@egjs/jquery-pauseresume": "^2.0.1",
     "@types/youtube": "0.0.37",
     "angular-jwt": "^0.1.11",
     "angular2-carousel": "^1.0.17",

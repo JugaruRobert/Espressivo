@@ -6,25 +6,34 @@
       [playerVars]="playerVars"
   >
   </youtube-player>
-
-  <!-- <div class="row">
-    <button id="pauseAudio" type="button" class="btn btn-light" (click)="pauseVideo()">Pause</button>
-    <button id="playAudio" type="button" class="btn btn-light" (click)="playVideo()">Play</button>
-  </div>  -->
   <main id="controlsMain">
-    <div id="progress">
-    <div id="progress-bar"></div>
-  </div>
+    <div id="progress" (mousemove)="setSeekToMouseMove($event)" (click)="setSeekToMouseClick($event)" (mouseover)="showCurrentTime($event)" (mouseout)="hideCurrentTime()">
+      <span id="currentTime">{{currentTime}}</span>
+      <div id="progress-bar" #progressBar (click)="setSeekToMouseClick($event)"></div>
+    </div>
   <div id="title">
-    <div id="title-text">Hey Girl // Florence Welch, Lady Gaga</div>
+    <div id="title-text">
+      {{title}} - {{artists.join(", ")}}
+    </div>
   </div>
   <div id="controls">
-    <div class="control"><i class="material-icons icon">&#xE045;</i></div>
-    <div class="control" id="controls-play" onclick="play()">
-      <i class="material-icons icon icon-play">&#xE037;</i>
-      <i class="material-icons icon icon-pause">&#xE034;</i>
+    <div id="volumeControl">
+      <i id="volume" class="fa fa-volume-up" (click)="muteVideo()"></i>
+      <span class="volume-level" id="volumeLevel" (click)="setVolumeMouseClick($event)" (mousemove)="setVolumeMouseMove($event)">
+        <em id="volumeBar" style="width: 50%"></em>
+      </span>
     </div>
-    <div class="control"><i class="material-icons icon">&#xE044;</i></div>
+    <div id="orderControls">
+      <div class="control"><i class="material-icons icon" (click)="previousVideo()">&#xE045;</i></div>
+      <div class="control" id="controls-play" (click)="playAudio()">
+        <i id="playBtn" class="material-icons icon icon-play">&#xE037;</i>
+        <i id="pauseBtn" class="material-icons icon icon-pause">&#xE034;</i>
+      </div>
+      <div class="control"><i class="material-icons icon" (click)="nextVideo()">&#xE044;</i></div>
+    </div>
+    <div id="loopControl">
+        <img id="loopImg" src="../../assets/images/repeat.png" (click)="setLoop()"/>
+      </div>
   </div>
 </main>
 

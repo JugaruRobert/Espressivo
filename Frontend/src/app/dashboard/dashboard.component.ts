@@ -72,6 +72,7 @@ export class DashboardComponent implements OnInit {
      if(this.tracks.length == 0)
      {
        this.tracks = data;
+       console.log(this.tracks);
        if(this.tracks.length > 0)
        {
          var image = "url('" + this.tracks[0].Images[0].Url  + "')";

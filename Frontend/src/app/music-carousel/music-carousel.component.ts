@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild,SimpleChanges, HostListener, Output, EventEmitter } from '@angular/core';
 import { CarouselComponent } from 'angular2-carousel';
 import { AppService } from '../shared/service/AppService';
+import { MusicPlayerComponent } from '../music-player/music-player.component';
 
 export enum KEY_CODE {
   UP_ARROW = 38,
@@ -34,12 +35,11 @@ export class MusicCarouselComponent implements OnInit {
   public currentIndex = -1;
   @Input() tracks : any[];
 
-  
   constructor() {
   }
 
   @ViewChild('carousel') carousel: CarouselComponent;
-
+  
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['tracks']) {
       setTimeout(()=>{ 
@@ -50,27 +50,27 @@ export class MusicCarouselComponent implements OnInit {
   }
     
   ngOnInit() {
-    function addClass( element, classname ) {
-      if (element.classList)
-        element.classList.add(classname);
-      else
-        element.className += ' ' + classname;
+  }
+
+  onEventReceived(event:String){
+    switch(event)
+    {
+      case "next":
+      {
+        this.nextSlide();
+        break;
       }
-      
-      function removeClass( classname, element ) {
-          var cn = element.className;
-          var rxp = new RegExp( "\\s?\\b"+classname+"\\b", "g" );
-          cn = cn.replace( rxp, '' );
-          element.className = cn;
+      case "prev":
+      {
+        this.prevSlide();
+        break;
       }
-      
-      var progressBarEl = document.getElementById("progress-bar");
-      var controlsPlayEl = document.getElementById("controls-play");
-      
-      function play() {
-        addClass(progressBarEl, "play");
-        addClass(controlsPlayEl, "play");
+      case "end":
+      {
+        this.nextSlide();
+        break;
       }
+    }
   }
 
   slideChange(event:any){
@@ -89,13 +89,28 @@ export class MusicCarouselComponent implements OnInit {
     },500);
   }
 
-
   goToSlide(index: number){
     this.carousel.slideTo(index);
     this.currentIndex = index;
   }
 
   nextSlide(){
-    this.carousel.slideNext();
+    if(this.currentIndex == this.tracks.length-1)
+      this.goToSlide(0);
+    else
+    {
+      this.carousel.slideNext();
+      this.currentIndex++;
+    }
+  }
+
+  prevSlide(){
+    if(this.currentIndex == 0)
+      this.goToSlide(this.tracks.length-1);
+    else
+    {
+      this.carousel.slidePrev();
+      this.currentIndex--;
+    }
   }
 }

@@ -208,30 +208,30 @@ namespace EmotionBasedMusicPlayer.Business.Core
             List<Recommendation> recommendations = new List<Recommendation>();
             recommendations.Add(new Recommendation()
             {
-                Title = "Let Me Explain",
-                Artists = new List<string>() { "Bryson Tiller"},
+                Title = "You Don't Know Love",
+                Artists = new List<string>() { "Olly Murs" },
                 Images = new List<AlbumImage>()
                 {
                     new AlbumImage()
                     {
                         Height = 640,
-                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Url = "https://i.scdn.co/image/8de58e8d4564f29234bfbdb0daf9222c1c5e6c77",
                         Width = 640
                     },
                     new AlbumImage()
                     {
                         Height = 300,
-                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Url = "https://i.scdn.co/image/c7841d3e03dc7c0fc5f2d557e4a29a8251305abe",
                         Width = 300
                     },
                     new AlbumImage()
                     {
                         Height = 64,
-                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Url = "https://i.scdn.co/image/f369d93f08d9744cff7a9978e8747f8ad262c745",
                         Width = 64
                     },
                 },
-                VideoID = "EAd6UAfJyCI"
+                VideoID = "VzN5tKIh7xE"
             });
 
             recommendations.Add(new Recommendation()
@@ -264,88 +264,115 @@ namespace EmotionBasedMusicPlayer.Business.Core
 
             recommendations.Add(new Recommendation()
             {
-                Title = "Let Me Explain",
-                Artists = new List<string>() { "Bryson Tiller" },
+                Title = "Unsteady",
+                Artists = new List<string>() { "X Ambassadors" },
                 Images = new List<AlbumImage>()
                 {
                     new AlbumImage()
                     {
                         Height = 640,
-                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Url = "https://i.scdn.co/image/3c90b0e40fd36f8060dbbf2b7f1eb3daacb197d5",
                         Width = 640
                     },
                     new AlbumImage()
                     {
                         Height = 300,
-                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Url = "https://i.scdn.co/image/d525ee687f6d2b62082f52bbe9953a0339f9b2c7",
                         Width = 300
                     },
                     new AlbumImage()
                     {
                         Height = 64,
-                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Url = "https://i.scdn.co/image/cbb1b57fc7af9f9029b2d7568e2bfd9ea1b42afd",
                         Width = 64
                     },
                 },
-                VideoID = "EAd6UAfJyCI"
+                VideoID = "lMSakueE0Hw"
             });
 
             recommendations.Add(new Recommendation()
             {
-                Title = "Let Me Explain",
-                Artists = new List<string>() { "Bryson Tiller" },
+                Title = "Capsize",
+                Artists = new List<string>() { "FRENSHIP", "Emily Warren" },
                 Images = new List<AlbumImage>()
                 {
                     new AlbumImage()
                     {
                         Height = 640,
-                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Url = "https://i.scdn.co/image/509fde2dff5614b27f3a69b340750983b6ce6272",
                         Width = 640
                     },
                     new AlbumImage()
                     {
                         Height = 300,
-                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Url = "https://i.scdn.co/image/bbb8a896a70f056fc3e10ddcbd24b8c450275214",
                         Width = 300
                     },
                     new AlbumImage()
                     {
                         Height = 64,
-                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Url = "https://i.scdn.co/image/b3af239761e8448db05a314d25f475b16284a635",
                         Width = 64
                     },
                 },
-                VideoID = "EAd6UAfJyCI"
+                VideoID = "2pY_WobtVuQ"
             });
 
             recommendations.Add(new Recommendation()
             {
-                Title = "Let Me Explain",
-                Artists = new List<string>() { "Bryson Tiller" },
+                Title = "When I Was Your Man",
+                Artists = new List<string>() { "Bruno Mars" },
                 Images = new List<AlbumImage>()
                 {
                     new AlbumImage()
                     {
                         Height = 640,
-                        Url = "https://i.scdn.co/image/fac6e165f103c6f17627efbb80ea014bd70807ff",
+                        Url = "https://i.scdn.co/image/da39a8f80539ea048011ee3aa59f4066659290ea",
                         Width = 640
                     },
                     new AlbumImage()
                     {
                         Height = 300,
-                        Url = "https://i.scdn.co/image/a1b48d3cb31e8ef421253b8c76ba757bd9e78680",
+                        Url = "https://i.scdn.co/image/e404a30a9e9a449e1f30156940fb0af63e45a42e",
                         Width = 300
                     },
                     new AlbumImage()
                     {
                         Height = 64,
-                        Url = "https://i.scdn.co/image/7eff6d0d3573711291fb4640afbe1032903bec43",
+                        Url = "https://i.scdn.co/image/6f958e8a9335e1458fc81f22a72f87a11737179e",
                         Width = 64
                     },
                 },
-                VideoID = "EAd6UAfJyCI"
+                VideoID = "ekzHIouo8Q4"
             });
 
+            recommendations.Add(new Recommendation()
+            {
+                Title = "Angels",
+                Artists = new List<string>() { "Khalid" },
+                Images = new List<AlbumImage>()
+                {
+                    new AlbumImage()
+                    {
+                        Height = 640,
+                        Url = "https://i.scdn.co/image/5026fddc6c0b69e931ae99130f15d4214f1e7d41",
+                        Width = 640
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 300,
+                        Url = "https://i.scdn.co/image/3f2cc8df9f891830695c00446ce86bd892e60886",
+                        Width = 300
+                    },
+                    new AlbumImage()
+                    {
+                        Height = 64,
+                        Url = "https://i.scdn.co/image/ee9853bb9b13357f12b691eaeac8b9a44c5c99d8",
+                        Width = 64
+                    },
+                },
+                VideoID = "V2CP7DoECnc"
+            });
             return recommendations;
         }
         #endregion
