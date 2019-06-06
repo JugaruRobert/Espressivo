@@ -7,11 +7,8 @@ import { refreshDescendantViews } from '@angular/core/src/render3/instructions';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        //const helper = new JwtHelperService();
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
-            //if(helper.isTokenExpired(currentUser.Token))
-                //refresh()
             request = request.clone({
                 setHeaders: { 
                     Authorization: `Bearer ${currentUser.Token}`

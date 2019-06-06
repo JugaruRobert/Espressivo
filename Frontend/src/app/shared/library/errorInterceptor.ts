@@ -1,19 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppService } from '../service/AppService';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
+@Injectable()
+export class HTTPStatus {
+  private request$: BehaviorSubject<boolean>;
+  constructor() {
+    this.request$ = new BehaviorSubject(false);
+  }
+
+  setHttpStatus(loading: boolean) {
+    this.request$.next(loading);
+  }
+
+  getHttpStatus(): Observable<boolean> {
+    return this.request$.asObservable();
+  }
+}
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private service: AppService,private snackBar: MatSnackBar,private router:Router) {}
+    constructor(private service: AppService,
+                private snackBar: MatSnackBar,
+                private router:Router,
+                private status: HTTPStatus) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            $("#equalizerLogo").hide();
+            this.status.setHttpStatus(false);
             
             if (err.status === 406) {
                 switch(err.error.Message){

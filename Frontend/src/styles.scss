@@ -4,7 +4,7 @@
 
 html, body {
     height: 100%;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 body
@@ -43,4 +43,13 @@ iframe{
 
 ::-moz-selection {
     background: transparent;
+}
+
+snack-bar-container {
+    &.mat-snack-bar-container {
+        background-color: $brand-darker;
+    }
+    &.mat-snack-bar-container.mat-snack-bar-center {
+        margin-top: 31px;
+    }
 }

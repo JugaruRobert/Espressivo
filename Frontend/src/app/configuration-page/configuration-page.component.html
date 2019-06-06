@@ -1,0 +1,20 @@
+
+<div id="centerContainer">
+    <div class="file-upload">
+        <div class="file-btn" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</div>
+      
+        <div class="image-upload-wrap">
+          <input (change)="uploadImage($event.target.files)" class="file-upload-input" id="inputImageId" type="file" accept="image/*"/>
+          <div *ngIf="!imageFile" class="drag-text">
+            <h3>Drag and drop image</h3>
+          </div>
+        </div>
+        <div *ngIf="imageFile" class="file-upload-content">
+          <div class="imageWrapper">
+            <div id="removeImage" (click)="removeImage()">x</div>
+            <img class="file-upload-image" src="{{imageFile}}" alt="your image" />
+          </div>
+        </div>
+      </div>
+      <span id="getRecommendationsBtn" class="pushButton" (click) = "getRecommendations()">Let there be music</span>
+</div>

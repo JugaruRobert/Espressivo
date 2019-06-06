@@ -1,0 +1,173 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+@import "../../assets/scss/variables";
+
+#centerContainer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+}
+
+#getRecommendationsBtn{
+    text-decoration: none;
+    color: white;
+    width: 200px;
+    height: 100px;
+    background: $brand-dark;
+    position: relative;
+    margin: 30px;
+    top: 46px;
+    padding: 10px 14px;
+    font-size: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 15px 0px 0px $brand-darker, 0px 0px 20px 0px $brand-darker;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+#getRecommendationsBtn:active {
+    top: 54px;
+    box-shadow: 0px 7px 0px 0px $brand-darker;
+}
+
+.file-upload {
+    background-color: rgba(47, 53, 58, 0.8);
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .file-btn {
+    text-decoration: none;
+    line-height: 1;
+    color: white;
+    width: 100%;
+    height: 43px;
+    background: #3a4149;
+    position: relative;
+    top: 0;
+    padding: 10px 14px;
+    font-size: 22px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 0px 0px #2f353a, 0px 0px 15px 0px #2f353a;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .file-btn:active {
+    top: 8px;
+    box-shadow: 0px 2px 0px 0px #2f353a;
+    cursor: pointer;
+  }
+  
+  .file-upload-content {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+    left: 0;
+  }
+  
+  .image-upload-wrap {
+    margin-top: 20px;
+    position: relative;
+    background-color: $brand-dark;
+  }
+  
+  .image-dropping,
+  .image-upload-wrap:hover {
+    cursor: pointer;
+    background-color: $brand-darker;
+  }
+  
+  .image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+  }
+  
+  .drag-text {
+    text-align: center;
+    height: 100%;
+    border: 4px dashed white;
+  }
+  
+  .drag-text h3 {
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255,0.6);
+    padding: 60px 0;
+    font-size: 22px;
+  }
+  
+  .file-upload-image {
+    max-height: 370px;
+    width: auto;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .remove-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: fit-content;
+  }
+
+  #removeImage {
+    background: #2f353a;
+    color: white;
+    font-weight: 700;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 23px;
+    height: 23px;
+    font-size: 17px;
+    line-height: 19px;
+
+    &:hover{
+        opacity: 0.7;
+    }
+  }
+  

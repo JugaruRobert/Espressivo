@@ -16,6 +16,8 @@ using EmotionBasedMusicPlayer.Models;
 using EmotionBasedMusicPlayer.Models.Recommendations;
 using EmotionBasedMusicPlayer.Filters;
 using System.Web;
+using EmotionBasedMusicPlayer.Business.Utils;
+using System.IO;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
@@ -24,11 +26,26 @@ namespace EmotionBasedMusicPlayer.Controllers
     public class RecommendationController : MainApiController
     {
         #region Methods
-        [HttpGet]
+        [HttpPost]
         [Route("")]
         public List<Recommendation> GetRecommendations()
         {
-            return BusinessContext.GetRecommendations();
+            HttpRequest httpRequest = HttpContext.Current.Request;
+            HttpPostedFile postedFile = httpRequest.Files["Image"];
+
+            if(postedFile == null)
+            {
+                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error.MissingImage");
+                throw new HttpResponseException(response);
+            }
+
+            byte[] fileData = null;
+            using (var binaryReader = new BinaryReader(postedFile.InputStream))
+            {
+                fileData = binaryReader.ReadBytes(postedFile.ContentLength);
+            }
+
+            return BusinessContext.GetRecommendations(fileData);
         }
 
         [HttpGet]

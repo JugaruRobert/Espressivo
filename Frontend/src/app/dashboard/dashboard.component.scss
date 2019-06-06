@@ -16,6 +16,26 @@
     z-index: 1;
 }
 
+#backIcon {
+    font-size: 36px;
+    color: $navbar-bg;
+    position: absolute;
+    z-index: 1;
+    top: 68px;
+    left: 16px;
+    cursor: pointer;
+    background: white;
+    width: 33px;
+    height: 33px;
+    border-radius: 50px;
+    line-height: -23px;
+    display: flex;
+    justify-content: space-around;
+    .fas {
+        line-height: 33px;
+    }
+}
+
 .mat-menu-panel {
     margin-top: 7px;
     .mat-menu-content:not(:empty)  {
@@ -155,6 +175,7 @@ $accent: lighten($bg, 18%);
     max-height: 120px;
     display:flex;
     justify-content: center;
+    margin: calc(100vh / 3.5) 0;
 
     span{
         margin-left: 4.5px;

@@ -15,9 +15,10 @@ export class AppService {
         private urlBuilder: ApiUrlBuilder
     ){} 
 
-    getRecommendations(): Observable<any> {
-        $("#equalizerLogo").show();
-        return this.http.get(this.urlBuilder.recommendationsUrl());
+    getRecommendations(image:any): Observable<any> {
+        const formData: FormData = new FormData();
+        formData.append('Image', image, "imageName");
+        return this.http.post(this.urlBuilder.recommendationsUrl(), formData);
     }
 
     login(username:string, password:string):Observable<User>{

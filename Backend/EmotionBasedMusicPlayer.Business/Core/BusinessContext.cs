@@ -156,7 +156,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
         #endregion
 
         #region Methods
-        public List<Recommendation> GetRecommendations()
+        public List<Recommendation> GetRecommendations(byte[] byteData)
         {
             //string imagePath = "C:\\Users\\Robert\\Desktop\\2.jpg";
             //byte[] byteData = ImageUtils.GetImageAsByteArray(imagePath);
@@ -165,6 +165,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
             //TuneableTrack track = new TuneableTrack(emotionData);
             //JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(genreSeed: new List<string>() { "pop" });
             //return GetVideoUrls(recommendationsJSON);
+
             return GetTestRecommendations();
         }
 

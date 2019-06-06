@@ -20,17 +20,18 @@
   </div>
 </nav>
 
-<div class="container-fluid animated fadeIn" id="mainDashboardContainer">
-    <div class="row">
-        <button id="getRecommendations" type="button" class="btn btn-light" (click)="getRecommendations()">Get some recommendations</button>
-    </div>
-    <div id="carouselContainer">
-        <!-- (getMoreTracksEmitter)="getRecommendations()" -->
+<div *ngIf="!isLoading" class="container-fluid animated fadeIn" id="mainDashboardContainer">
+    <div *ngIf="tracks && tracks.length > 0 " id="carouselContainer">
+      <div id="backIcon">
+        <i (click)="backToMainPage()" class="fas fa-arrow-circle-left"></i>
+      </div>
       <app-music-carousel  [tracks]="tracks"></app-music-carousel>
     </div>
+    <div *ngIf="!tracks || tracks.length <= 0" id="configurationContainer">
+      <app-configuration-page (getRecommendationEmitter)="getRecommendations($event)"></app-configuration-page>
+    </div>
 </div>
-
-<div id="equalizerLogo" class="equalizer">
+<div *ngIf="isLoading" id="equalizerLogo" class="equalizer">
   <span></span>
   <span></span>
   <span></span>

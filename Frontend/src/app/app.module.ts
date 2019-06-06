@@ -17,10 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { JwtInterceptor } from './shared/library/jwtInterceptor';
-import { ErrorInterceptor } from './shared/library/errorInterceptor';
+import { ErrorInterceptor, HTTPStatus } from './shared/library/errorInterceptor';
 import { AppService } from './shared/service/AppService';
 import { ApiUrlBuilder } from './shared/service/ApiUrlBuilder';
 import { FirstLoginInformationComponent } from './first-login-information/first-login-information.component';
+import { ConfigurationPageComponent } from './configuration-page/configuration-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FirstLoginInformationComponent } from './first-login-information/first-
     LoginPageComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    FirstLoginInformationComponent
+    FirstLoginInformationComponent,
+    ConfigurationPageComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -60,6 +62,7 @@ import { FirstLoginInformationComponent } from './first-login-information/first-
   providers: [
     AppService,
     ApiUrlBuilder,
+    HTTPStatus,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

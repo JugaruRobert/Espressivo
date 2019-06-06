@@ -4,6 +4,7 @@ import { ApiUrlBuilder } from '../shared/service/ApiUrlBuilder';
 import { MatDialog } from '@angular/material';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { Router } from '@angular/router';
+import { HTTPStatus } from '../shared/library/errorInterceptor';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,10 +18,14 @@ export class DashboardComponent implements OnInit {
   private userGenres = [];
   private allGenres = [];
   private userArtists = [];
+  public isLoading:boolean = true;
 
   constructor(public dialog: MatDialog,
     private appService: AppService,
-    private router: Router) {}
+    private router: Router,
+    private httpStatus:HTTPStatus) {
+      this.httpStatus.getHttpStatus().subscribe((status: boolean) => {this.isLoading = status});
+    }
 
    openUserProfileModal(): void {
     const dialogRef = this.dialog.open(UserProfileComponent, {
@@ -39,7 +44,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    $("#equalizerLogo").hide();
     this.getAllGenres();
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser)
@@ -66,9 +70,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getRecommendations(): void{
-   this.appService.getRecommendations().subscribe((data) => {
-    $("#equalizerLogo").hide();
+  getRecommendations(imageFile:any): void{
+   this.httpStatus.setHttpStatus(true);
+   this.appService.getRecommendations(imageFile).subscribe((data) => {
      if(this.tracks.length == 0)
      {
        this.tracks = data;
@@ -83,6 +87,12 @@ export class DashboardComponent implements OnInit {
         data.forEach(element => {
             this.tracks.push(element);
         });   
+        this.httpStatus.setHttpStatus(false);
     });
+  }
+
+  backToMainPage() {
+    $("#backImage").css("background-image","url('../../assets/images/background.jpg')");
+    this.tracks = [];
   }
 }
