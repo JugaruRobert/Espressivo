@@ -23,13 +23,13 @@ namespace EmotionBasedMusicPlayer.Core
             {
                 if (_businessContext == null)
                 {
-                    _businessContext = new BusinessContext();
-                    //_businessContext = GetAuthenticatedBusinessContext();
-                    //if (_businessContext == null)
-                    //{
-                    //    HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Error.Unauthorized");
-                    //    throw new HttpResponseException(response);
-                    //}
+                    //_businessContext = new BusinessContext();
+                    _businessContext = GetAuthenticatedBusinessContext();
+                    if (_businessContext == null)
+                    {
+                        HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Error.Unauthorized");
+                        throw new HttpResponseException(response);
+                    }
                 }
                 return _businessContext;
             }
@@ -37,11 +37,19 @@ namespace EmotionBasedMusicPlayer.Core
         #endregion
 
         #region Methods
-        private BusinessContext GetAuthenticatedBusinessContext()
+        protected BusinessContext GetAuthenticatedBusinessContext()
         {
             ClaimsIdentity currentIdentity = (ClaimsIdentity)RequestContext.Principal.Identity;
             if (currentIdentity == null)
                 return null;
+
+            var userIDClaim = currentIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            string userIDString = userIDClaim?.Value;
+
+            if (string.IsNullOrEmpty(userIDString))
+                return null;
+
+            Guid userID = new Guid(userIDString);
 
             var usernameClaim = currentIdentity.FindFirst(ClaimTypes.Name);
             string username = usernameClaim?.Value;
@@ -57,6 +65,7 @@ namespace EmotionBasedMusicPlayer.Core
 
             User authenticatedUser = new User()
             {
+                UserID = userID,
                 Username = username,
                 Email = email
             };

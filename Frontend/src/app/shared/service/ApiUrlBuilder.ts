@@ -13,7 +13,7 @@ export class ApiUrlBuilder {
     }
 
     registerUrl():string{
-        return this.baseUrl + "/users/register";
+        return this.baseUrl + "/token/register";
     }
 
     genres():string{

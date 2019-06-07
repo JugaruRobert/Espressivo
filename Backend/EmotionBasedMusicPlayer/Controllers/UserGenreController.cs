@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
-    //[AuthenticationFilter]
+    [AuthenticationFilter]
     [RoutePrefix("userGenres")]
     public class UserGenreController : MainApiController
     {

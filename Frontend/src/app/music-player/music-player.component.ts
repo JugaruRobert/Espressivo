@@ -37,7 +37,10 @@ export class MusicPlayerComponent{
     ngOnChanges(changes: SimpleChanges): void {
       if(changes['videoId']) {
         if(this.player && this.videoId)
+        {
+          this.videoStarted = false;
           this.player.loadVideoById(this.videoId);
+        }
       }
     }
 
@@ -50,6 +53,7 @@ export class MusicPlayerComponent{
         this.playVideo();
       }
       else if (event.data == YT.PlayerState.PLAYING) {
+        this.videoStarted = true;
         this.totalDuration = this.player.getDuration();
         this.step = (100/this.totalDuration);
       }

@@ -15,7 +15,7 @@ namespace EmotionBasedMusicPlayer.Core
         #endregion
 
         #region Methods
-        public static string GenerateToken(Guid userID, string username, string email, string encryptedPass, int expireMinutes = 20)
+        public static string GenerateToken(Guid userID, string username, string email)
         {
             var symmetricKey = Convert.FromBase64String(secret);
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -25,12 +25,12 @@ namespace EmotionBasedMusicPlayer.Core
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier,userID.ToString()),
+                   new Claim(ClaimTypes.NameIdentifier,userID.ToString()),
                    new Claim(ClaimTypes.Name, username),
                    new Claim(ClaimTypes.Email, email)
                 }),
 
-                Expires = now.AddMinutes(Convert.ToInt32(20)),
+                Expires= now.AddHours(24),
 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
             };

@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(".mat-snack-bar-container").hide();
     this.getAllGenres();
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser)

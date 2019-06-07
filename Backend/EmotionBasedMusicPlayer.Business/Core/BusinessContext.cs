@@ -156,51 +156,83 @@ namespace EmotionBasedMusicPlayer.Business.Core
         #endregion
 
         #region Methods
-        public List<Recommendation> GetRecommendations(byte[] byteData)
+        public List<Recommendation> GetRecommendations(byte[] byteData,Guid userID)
         {
             //string imagePath = "C:\\Users\\Robert\\Desktop\\2.jpg";
             //byte[] byteData = ImageUtils.GetImageAsByteArray(imagePath);
 
-            //FaceAttributes emotionData = EmotionRecognitionBusiness.AnalyzeImage(new ByteArrayContent(byteData));
-            //TuneableTrack track = new TuneableTrack(emotionData);
-            //JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(genreSeed: new List<string>() { "pop" });
-            //return GetVideoUrls(recommendationsJSON);
+            FaceAttributes emotionData = EmotionRecognitionBusiness.AnalyzeImage(new ByteArrayContent(byteData));
+            TuneableTrack track = new TuneableTrack(emotionData);
 
-            return GetTestRecommendations();
+            IEnumerable<Artist> seeds = DALContext.UserDAL.ReadUserPreferences(userID);
+            List<string> genreSeeds = new List<string>();
+            List<string> artistSeeds = new List<string>();
+
+            if (seeds.Count() > 0)
+            {
+                foreach(Artist seed in seeds)
+                {
+                    if (seed.ArtistID == null)
+                        genreSeeds.Add(seed.Name.ToLower());
+                    else
+                        artistSeeds.Add(seed.ArtistID);
+                }
+            }
+
+            JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(
+                genreSeed: genreSeeds.Count > 0 ? genreSeeds : null,
+                artistSeed: artistSeeds.Count > 0 ? artistSeeds : null);
+            return GetVideoUrls(recommendationsJSON, userID);
+
+            //return GetTestRecommendations();
         }
 
-        public List<Recommendation> GetVideoUrls(JObject recommendationsJSON)
+        public List<Recommendation> GetVideoUrls(JObject recommendationsJSON,Guid userID)
         {
             List<Recommendation> recommendations = new List<Recommendation>();
-            foreach(var track in recommendationsJSON.SelectToken("tracks"))
+            try
             {
-                Recommendation recommendation = new Recommendation();
-
-                string title = track.SelectToken("name")?.ToString();
-                if (String.IsNullOrEmpty(title))
-                    continue;
-                recommendation.Title = title;
-
-                foreach (var artist in track.SelectToken("artists"))
+                foreach (var track in recommendationsJSON.SelectToken("tracks"))
                 {
-                    string name = artist.SelectToken("name")?.ToString();
-                    if (String.IsNullOrEmpty(name))
+                    Recommendation recommendation = new Recommendation();
+
+                    string title = track.SelectToken("name")?.ToString();
+                    if (String.IsNullOrEmpty(title))
                         continue;
-                    recommendation.Artists.Add(name);
-                }
+                    recommendation.Title = title;
 
-                foreach (var image in track.SelectToken("album.images"))
-                {
-                    recommendation.Images.Add(new AlbumImage()
+                    foreach (var artist in track.SelectToken("artists"))
                     {
-                        Height = int.Parse(image.SelectToken("height").ToString()),
-                        Url = image.SelectToken("url").ToString(),
-                        Width = int.Parse(image.SelectToken("width").ToString())
-                    });
+                        string name = artist.SelectToken("name")?.ToString();
+                        if (String.IsNullOrEmpty(name))
+                            continue;
+                        recommendation.Artists.Add(name);
+                    }
+
+                    foreach (var image in track.SelectToken("album.images"))
+                    {
+                        recommendation.Images.Add(new AlbumImage()
+                        {
+                            Height = int.Parse(image.SelectToken("height").ToString()),
+                            Url = image.SelectToken("url").ToString(),
+                            Width = int.Parse(image.SelectToken("width").ToString())
+                        });
+                    }
+                    recommendation.VideoID = YoutubeBusiness.GetVideoUrl(recommendation.Artists, recommendation.Title);
+                    recommendations.Add(recommendation);
                 }
-                recommendation.VideoID = YoutubeBusiness.GetVideoUrl(recommendation.Artists,recommendation.Title);
-                recommendations.Add(recommendation);
             }
+            catch(Exception ex)
+            {
+                IEnumerable<GenreName> userGenreSeeds = DALContext.UserGenreDAL.ReadGenreSeeds(userID);
+                List<string> genreSeeds = new List<string>();
+                foreach (GenreName genreName in userGenreSeeds)
+                    genreSeeds.Add(genreName.Name);
+                recommendationsJSON = RecommendationBusiness.GetRecommendations(genreSeed: genreSeeds.Count() > 0 ? genreSeeds : null);
+            }
+
+            if (recommendations.Count == 0)
+                return GetTestRecommendations();
             return recommendations;
         }
 

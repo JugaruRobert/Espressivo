@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
 import { AppService } from '../shared/service/AppService';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-first-login-information',
@@ -16,13 +17,24 @@ export class FirstLoginInformationComponent implements OnInit {
   public selectedArtists: any[] = [];
   public selectedGenres: any[] = [];
   public searchArtist: FormControl = new FormControl();
-
+  private numberCalls = 0;
+  private successSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  
   private searchHandler:any;
   private searchDelay: number = 500;
   
-  constructor(private service:AppService,private snackBar: MatSnackBar,private router:Router) { }
+  constructor(private service:AppService,private snackBar: MatSnackBar,private router:Router) {
+    this.successSubject.asObservable().subscribe(() =>
+    {
+        if (this.numberCalls > 0 && this.successSubject.value === this.numberCalls) {
+          this.router.navigate(['dashboard']);
+        }
+      }
+    )
+  }
 
   ngOnInit() {
+    $(".mat-snack-bar-container").hide();
     this.getGenres();
   }
 
@@ -83,12 +95,22 @@ export class FirstLoginInformationComponent implements OnInit {
     if(currentUser)
     {
       if(this.selectedArtists.length > 0)
-        this.service.insertUserArtists(currentUser.ID, this.selectedArtists).subscribe();
+      {
+        this.numberCalls++;
+        this.service.insertUserArtists(currentUser.ID, this.selectedArtists).subscribe(() =>
+        {
+          this.successSubject.next(this.successSubject.value + 1);
+        });
+      }
 
       if(this.selectedGenres.length > 0)
-        this.service.insertUserGenres(currentUser.ID, this.selectedGenres).subscribe();
-      
-      this.router.navigate(['dashboard']);
+      {
+        this.numberCalls++;
+        this.service.insertUserGenres(currentUser.ID, this.selectedGenres).subscribe(() =>
+        {
+          this.successSubject.next(this.successSubject.value + 1);
+        });
+      }
     }
     else
     {

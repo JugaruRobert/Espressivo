@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
-    //[AuthenticationFilter]
+    [AuthenticationFilter]
     [RoutePrefix("users")]
     public class UserController : MainApiController
     {
@@ -24,47 +24,6 @@ namespace EmotionBasedMusicPlayer.Controllers
             user.Password = AesEncryption.Encrypt(user.Password);
             user.UserID = Guid.NewGuid();
             BusinessContext.UserBusiness.Insert(user);
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("register")]
-        public string Register()
-        {
-            string username = HttpContext.Current.Request.Headers["username"];
-            string email = HttpContext.Current.Request.Headers["email"];
-            string password = HttpContext.Current.Request.Headers["password"];
-
-            if (username == null || email == null || password == null)
-            {
-                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Error.MissingCredentials");
-                throw new HttpResponseException(response);
-            }
-
-            password = AesEncryption.Encrypt(password);
-            BusinessContext context = new BusinessContext();
-            Guid userID = Guid.NewGuid();
-            User user = context.UserBusiness.ReadByUsernameOrEmail(userID,username, email);
-            if (user != null)
-            {
-                string errorMessage = String.Empty;
-                if (username == user.Username)
-                    errorMessage = "Error.ExistingUsername";
-                else if(email == user.Email)
-                    errorMessage = "Error.ExistingEmail";
-                HttpResponseMessage response = this.Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, errorMessage);
-                throw new HttpResponseException(response);
-            }
-
-            context.UserBusiness.Insert(new Models.User()
-            {
-                UserID = userID,
-                Username = username,
-                Email = email,
-                Password = password
-            });
-
-            return JwtTokenLibrary.GenerateToken(userID,username, email, password);
         }
 
         [HttpGet]

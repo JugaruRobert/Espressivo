@@ -21,7 +21,7 @@ using System.IO;
 
 namespace EmotionBasedMusicPlayer.Controllers
 {
-    //[AuthenticationFilter]
+    [AuthenticationFilter]
     [RoutePrefix("recommendations")]
     public class RecommendationController : MainApiController
     {
@@ -45,7 +45,7 @@ namespace EmotionBasedMusicPlayer.Controllers
                 fileData = binaryReader.ReadBytes(postedFile.ContentLength);
             }
 
-            return BusinessContext.GetRecommendations(fileData);
+            return BusinessContext.GetRecommendations(fileData, BusinessContext.CurrentUser.UserID);
         }
 
         [HttpGet]

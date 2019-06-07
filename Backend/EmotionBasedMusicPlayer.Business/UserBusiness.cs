@@ -68,6 +68,14 @@ namespace EmotionBasedMusicPlayer.Business
         {
             _context.DALContext.UserDAL.DeleteByID(userID);
         }
+
+        public IEnumerable<Artist> ReadUserPreferences()
+        {
+            Guid userID = _context.CurrentUser.UserID;
+            if (userID != null)
+                return _context.DALContext.UserDAL.ReadUserPreferences(userID);
+            return null;
+        }
         #endregion
     }
 }

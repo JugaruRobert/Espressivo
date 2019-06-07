@@ -37,11 +37,11 @@ iframe{
     height:0;
 }
 
-::selection {
+:not(.form-control)::selection {
     background: transparent;
 }
 
-::-moz-selection {
+:not(.form-control)::-moz-selection {
     background: transparent;
 }
 

@@ -54,6 +54,7 @@
     color: white;
     overflow: hidden;
     height: 35px;
+    position: relative;
   }
   
   #title-text {
@@ -61,9 +62,35 @@
     color: white;
     animation: scrolling-text 16s linear infinite;
     font-size: 20px;
+    position: absolute;
+    width: 100%;
   }
   
   @keyframes scrolling-text {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  #title-text-second {
+    z-index: 1;
+    color: white;
+    animation: scrolling-text-second 16s linear infinite, displayElement 0s 8s forwards;
+    font-size: 20px;
+    animation-delay: 8s;
+    position: absolute;
+    width: 100%;
+    visibility: hidden;
+  }
+  
+  @keyframes displayElement {
+    to   { visibility: visible; }
+  }
+
+  @keyframes scrolling-text-second {
     from {
       transform: translateX(100%);
     }

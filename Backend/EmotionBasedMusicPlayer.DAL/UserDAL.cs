@@ -56,6 +56,11 @@ namespace EmotionBasedMusicPlayer.DAL
                                                                                                                  new SqlParameter("Email", email)).FirstOrDefault();
         }
 
+        public IEnumerable<Artist> ReadUserPreferences(Guid userID)
+        {
+            return DbOperations.ExecuteQuery<Artist>(_context.connectionString, "dbo.GetRandomSeeds", new SqlParameter("UserID", userID));
+        }
+
         public User ReadByUsername(string username)
         {
             return DbOperations.ExecuteQuery<User>(_context.connectionString, "dbo.Users_ReadByUsername", new SqlParameter("Username", username)).FirstOrDefault();

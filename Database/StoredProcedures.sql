@@ -183,7 +183,7 @@ CREATE PROCEDURE [Artists_ReadByID]
 	@ArtistID NVARCHAR(50)
 AS
 BEGIN
-	SELECT [Name]
+	SELECT *
 	FROM [Artists]
 	WHERE [ArtistID] = @ArtistID
 END
@@ -321,5 +321,40 @@ AS
 BEGIN
 	DELETE FROM [UsersArtists]
 	WHERE [UserID] = @UserID
+END
+GO
+
+CREATE PROCEDURE [GetRandomSeeds]
+	@UserID UNIQUEIDENTIFIER
+AS
+BEGIN
+	DECLARE @genresTable as table([Name] NVARCHAR(100) NOT NULL);
+	INSERT INTO @genresTable exec [UsersGenres_ReadByUserID] @UserID
+
+	DECLARE @artistsTable as table([ArtistID] NVARCHAR(50) NOT NULL, [Name] NVARCHAR(100) NOT NULL);
+	INSERT INTO @artistsTable exec [UsersArtists_ReadByUserID] @UserID
+
+	SELECT TOP 5 *
+	FROM
+	(
+		SELECT [ArtistID],[Name] from @artistsTable
+		UNION 
+		SELECT NULL as [ArtistID],[Name] from @genresTable
+	) seeds
+	ORDER BY NEWID()
+END
+GO
+
+
+CREATE PROCEDURE [GetRandomGenreSeeds]
+	@UserID UNIQUEIDENTIFIER
+AS
+BEGIN
+	DECLARE @genresTable as table([Name] NVARCHAR(100) NOT NULL);
+	INSERT INTO @genresTable exec [UsersGenres_ReadByUserID] @UserID
+
+	SELECT TOP 5 *
+	FROM (SELECT [Name] from @genresTable) gt
+	ORDER BY NEWID()
 END
 GO

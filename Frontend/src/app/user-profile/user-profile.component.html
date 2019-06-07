@@ -1,13 +1,13 @@
 <div mat-dialog-content id="userProfileModal">
   <button id="closeDialog" mat-button [mat-dialog-close]="true">X</button>
-  <mat-accordion>
-      <mat-expansion-panel [expanded]="true" class="matExpansionPanel" id="profileSettings">
+  <mat-accordion [@.disabled]="true">
+      <mat-expansion-panel [expanded]="true" class="matExpansionPanel" id="profileSettings" >
         <mat-expansion-panel-header>
           <mat-panel-title class="matExpansionTitle">
               Profile Settings
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <form id="profileSettingsForm"  #form="ngForm" [formGroup]="profileSettingsForm" (ngSubmit)="validateAndSave()">
+        <form id="profileSettingsForm" #form="ngForm" [formGroup]="profileSettingsForm" (ngSubmit)="validateAndSave()">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" formControlName="username" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
@@ -26,7 +26,7 @@
         </form>
       </mat-expansion-panel>
       <mat-expansion-panel [expanded]="false" class="matExpansionPanel" id="genrePreferences">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header >
           <mat-panel-title class="matExpansionTitle">
             Genres
           </mat-panel-title>
