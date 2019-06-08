@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,17 @@ namespace EmotionBasedMusicPlayer.Business.Models
             faceAttributes.emotion = first.emotion + second.emotion;
 
             return faceAttributes;
+        }
+
+        public string GetPredominantEmotion()
+        {
+            PropertyInfo property = emotion.GetType().GetProperties().Aggregate((p1, p2) =>
+                (float)p1.GetValue(emotion) > (float)p2.GetValue(emotion) ? p1 : p2
+            );
+
+            if ((float)property.GetValue(emotion) == 0)
+                return "neutral";
+            return property.Name;
         }
         #endregion
     }

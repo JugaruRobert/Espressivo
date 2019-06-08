@@ -76,13 +76,15 @@ export class DashboardComponent implements OnInit {
    this.appService.getRecommendations(imageFile).subscribe((data) => {
      if(this.tracks.length == 0)
      {
-       this.tracks = data;
-       console.log(this.tracks);
-       if(this.tracks.length > 0)
-       {
-         var image = "url('" + this.tracks[0].Images[0].Url  + "')";
-         $("#backImage").css("background-image",image);
-       }
+      this.tracks = data.filter(function(item) {
+        return item.VideoID.length > 0
+      });
+
+      if(this.tracks.length > 0)
+      {
+        var image = "url('" + this.tracks[0].Images[0].Url  + "')";
+        $("#backImage").css("background-image",image);
+      }
      }
      else
         data.forEach(element => {
