@@ -162,6 +162,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
             //byte[] byteData = ImageUtils.GetImageAsByteArray(imagePath);
 
             FaceAttributes emotionData = EmotionRecognitionBusiness.AnalyzeImage(new ByteArrayContent(byteData));
+            string predominantEmotion = emotionData.GetPredominantEmotion();
             TuneableTrack track = new TuneableTrack(emotionData);
 
             IEnumerable<Artist> seeds = DALContext.UserDAL.ReadUserPreferences(userID);
@@ -182,12 +183,13 @@ namespace EmotionBasedMusicPlayer.Business.Core
             JObject recommendationsJSON = RecommendationBusiness.GetRecommendations(
                 genreSeed: genreSeeds.Count > 0 ? genreSeeds : null,
                 artistSeed: artistSeeds.Count > 0 ? artistSeeds : null);
-            return GetVideoUrls(recommendationsJSON, userID);
+
+            return GetVideoUrls(recommendationsJSON, userID, predominantEmotion);
 
             //return GetTestRecommendations();
         }
 
-        public List<Recommendation> GetVideoUrls(JObject recommendationsJSON,Guid userID)
+        public List<Recommendation> GetVideoUrls(JObject recommendationsJSON,Guid userID,string predominantEmotion)
         {
             List<Recommendation> recommendations = new List<Recommendation>();
             try
@@ -218,7 +220,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                             Width = int.Parse(image.SelectToken("width").ToString())
                         });
                     }
-                    recommendation.VideoID = YoutubeBusiness.GetVideoUrl(recommendation.Artists, recommendation.Title);
+                    recommendation.VideoID = YoutubeBusiness.GetVideoUrl(recommendation.Artists, recommendation.Title);                         
+                    recommendation.PredominantEmotion = predominantEmotion;
                     recommendations.Add(recommendation);
                 }
             }
@@ -264,7 +267,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                         Width = 64
                     },
                 },
-                VideoID = "VzN5tKIh7xE"
+                VideoID = "VzN5tKIh7xE",
+                PredominantEmotion = "Happiness"
             });
 
             recommendations.Add(new Recommendation()
@@ -292,7 +296,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                         Width = 64
                     },
                 },
-                VideoID = "2ebfSItB0oM"
+                VideoID = "2ebfSItB0oM",
+                PredominantEmotion = "Happiness"
             });
 
             recommendations.Add(new Recommendation()
@@ -320,7 +325,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                         Width = 64
                     },
                 },
-                VideoID = "lMSakueE0Hw"
+                VideoID = "lMSakueE0Hw",
+                PredominantEmotion = "Happiness"
             });
 
             recommendations.Add(new Recommendation()
@@ -348,7 +354,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                         Width = 64
                     },
                 },
-                VideoID = "2pY_WobtVuQ"
+                VideoID = "2pY_WobtVuQ",
+                PredominantEmotion = "Happiness"
             });
 
             recommendations.Add(new Recommendation()
@@ -376,7 +383,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                         Width = 64
                     },
                 },
-                VideoID = "ekzHIouo8Q4"
+                VideoID = "ekzHIouo8Q4",
+                PredominantEmotion = "Happiness"
             });
 
             recommendations.Add(new Recommendation()
@@ -404,7 +412,8 @@ namespace EmotionBasedMusicPlayer.Business.Core
                         Width = 64
                     },
                 },
-                VideoID = "V2CP7DoECnc"
+                VideoID = "V2CP7DoECnc",
+                PredominantEmotion = "Happiness"
             });
             return recommendations;
         }

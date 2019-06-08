@@ -22,6 +22,7 @@ import { AppService } from './shared/service/AppService';
 import { ApiUrlBuilder } from './shared/service/ApiUrlBuilder';
 import { FirstLoginInformationComponent } from './first-login-information/first-login-information.component';
 import { ConfigurationPageComponent } from './configuration-page/configuration-page.component';
+import {WebcamModule} from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ConfigurationPageComponent } from './configuration-page/configuration-p
     MatInputModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    WebcamModule
   ],
   entryComponents: [UserProfileComponent],
   providers: [

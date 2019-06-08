@@ -55,13 +55,14 @@ namespace EmotionBasedMusicPlayer.Business.Models
 
         public string GetPredominantEmotion()
         {
-            PropertyInfo property = emotion.GetType().GetProperties().Aggregate((p1, p2) =>
+            PropertyInfo property = emotion.GetType().GetProperties().Where(prop => prop.Name != "neutral").Aggregate((p1, p2) =>
                 (float)p1.GetValue(emotion) > (float)p2.GetValue(emotion) ? p1 : p2
             );
 
-            if ((float)property.GetValue(emotion) == 0)
+            float maxValue = (float)property.GetValue(emotion);
+            if (maxValue < 0.3)
                 return "neutral";
-            return property.Name;
+            return property.Name.ToLower();
         }
         #endregion
     }

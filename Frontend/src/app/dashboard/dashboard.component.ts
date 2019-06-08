@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   private allGenres = [];
   private userArtists = [];
   public isLoading:boolean = true;
+  public recognizedEmotion:string;
 
   constructor(public dialog: MatDialog,
     private appService: AppService,
@@ -74,27 +75,22 @@ export class DashboardComponent implements OnInit {
   getRecommendations(imageFile:any): void{
    this.httpStatus.setHttpStatus(true);
    this.appService.getRecommendations(imageFile).subscribe((data) => {
-     if(this.tracks.length == 0)
-     {
       this.tracks = data.filter(function(item) {
         return item.VideoID.length > 0
       });
 
       if(this.tracks.length > 0)
       {
+        this.recognizedEmotion = this.tracks[0].PredominantEmotion;
         var image = "url('" + this.tracks[0].Images[0].Url  + "')";
         $("#backImage").css("background-image",image);
       }
-     }
-     else
-        data.forEach(element => {
-            this.tracks.push(element);
-        });   
-        this.httpStatus.setHttpStatus(false);
+      this.httpStatus.setHttpStatus(false);
     });
   }
 
   backToMainPage() {
+    this.recognizedEmotion = null;
     $("#backImage").css("background-image","url('../../assets/images/background.jpg')");
     this.tracks = [];
   }

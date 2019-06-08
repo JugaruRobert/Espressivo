@@ -17,7 +17,9 @@ export class UserProfileComponent implements OnInit {
   public genres: any[];
   public artists: string[];
   public selectedArtists: any[] = [];
+  public selectedArtistsIsDirty: boolean = false;
   public selectedGenres: any[] = [];
+  public selectedGenresIsDirty: boolean = false;
   public searchArtist: FormControl = new FormControl();
   private numberCalls = 0;
   private successSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -122,12 +124,16 @@ export class UserProfileComponent implements OnInit {
       {
         var foundArtist = this.selectedArtists.filter(artist => artist.ArtistID == artistID);
         if(foundArtist.length == 0)
+        {
+          this.selectedArtistsIsDirty = true;
           this.selectedArtists.push({"ArtistID":artistID,"Name":artistName});
+        }
       }
   }
 
   unselectArtist(index:number){
     if (index >= 0 && index < this.selectedArtists.length) {
+        this.selectedArtistsIsDirty = true;
         this.selectedArtists.splice(index, 1);
     }    
   }
@@ -196,7 +202,7 @@ export class UserProfileComponent implements OnInit {
        
   updatePreferences(userID:string)
   {
-    if(this.selectedArtists.length > 0)
+    if(this.selectedArtists.length > 0 || this.selectedArtistsIsDirty == true)
     {
       this.numberCalls++;
       this.service.insertUserArtists(userID, this.selectedArtists).subscribe(()=>{
@@ -204,7 +210,7 @@ export class UserProfileComponent implements OnInit {
       });
     }
 
-    if(this.selectedGenres.length > 0)
+    if(this.selectedGenres.length > 0 || this.selectedGenresIsDirty == true)
     {
       this.numberCalls++;
       this.service.insertUserGenres(userID, this.selectedGenres).subscribe(()=>{
@@ -222,13 +228,19 @@ export class UserProfileComponent implements OnInit {
     if(checked == true)
     {
       if(this.selectedGenres.indexOf(genreName) == -1)
+      {
+        this.selectedGenresIsDirty = true;
         this.selectedGenres.push(genreName)
+      }
     }
     else
     {
       var index = this.selectedGenres.indexOf(genreName) ;
       if(index != -1)
+      {
+        this.selectedGenresIsDirty = true;
         this.selectedGenres.splice(index, 1);
+      }
     }
   }
 

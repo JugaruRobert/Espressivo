@@ -153,6 +153,17 @@
     }
 }
 
+#recognizedEmotion
+{
+    position: absolute; 
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    left: 45%;
+}
+
 .mat-button-focus-overlay{
     background-color:$body-bg !important;
 }

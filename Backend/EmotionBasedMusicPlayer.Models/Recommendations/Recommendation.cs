@@ -22,6 +22,9 @@ namespace EmotionBasedMusicPlayer.Models.Recommendations
 
         [DataMember]
         public string VideoID { get; set; }
+
+        [DataMember]
+        public string PredominantEmotion { get; set; }
         #endregion
     }
 }

@@ -39,6 +39,7 @@ export class MusicPlayerComponent{
         if(this.player && this.videoId)
         {
           this.videoStarted = false;
+          clearInterval(this.progressTimeout);
           this.player.loadVideoById(this.videoId);
         }
       }
@@ -47,21 +48,28 @@ export class MusicPlayerComponent{
     onStateChange(event) {
       this.ytEvent = event.data;
       if (event.data == YT.PlayerState.UNSTARTED) {
-        this.videoStarted = true;
+        this.videoStarted = false;
         clearInterval(this.progressTimeout);
         $("#progress-bar").css("width","0%");
-        this.playVideo();
       }
       else if (event.data == YT.PlayerState.PLAYING) {
-        this.videoStarted = true;
-        this.totalDuration = this.player.getDuration();
-        this.step = (100/this.totalDuration);
+        if(this.videoStarted == false)
+        {
+          this.videoStarted = true;
+          this.totalDuration = this.player.getDuration();
+          this.step = (100/this.totalDuration);
+          this.playVideo();
+        }
       }
       else if(event.data == YT.PlayerState.ENDED){
       {
+          clearInterval(this.progressTimeout);
           this.videoStarted = false;
+
           if(this.looping == false)
+          {
             this.videoEmitter.emit("end");
+          }
           else
           {
             $("#progress-bar").css("width","0%");

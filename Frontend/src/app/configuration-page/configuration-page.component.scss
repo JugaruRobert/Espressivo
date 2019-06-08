@@ -11,6 +11,42 @@
     margin-top: 3%;
 }
 
+.webcam-wrapper video.mirrored
+{
+  width: 100%;
+  max-height: 370px;
+}
+
+#toggleWebcamBtn
+{
+  margin-left:13px;
+}
+
+#fileButtons
+{
+  display:flex;
+}
+
+#webcamContainer {
+  position: relative;
+  .fa-camera {
+    font-weight: 900;
+    font-size: 32px;
+    color: white;
+    position: absolute;
+    bottom: -14px;
+    left: 44.7%;
+    cursor: pointer;
+    border: solid 3px white;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    border-radius: 100%;
+    background-color: grey;
+    padding: 8px 10px 10px 10px;
+  }
+}
+
 #getRecommendationsBtn{
     text-decoration: none;
     color: white;
@@ -39,6 +75,7 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
+    max-height: 480px;
   }
   
   .file-btn {

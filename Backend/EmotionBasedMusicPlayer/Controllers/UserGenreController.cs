@@ -20,8 +20,7 @@ namespace EmotionBasedMusicPlayer.Controllers
         [Route("")]
         public void Insert([FromBody]UserGenrePreferences userGenres)
         {
-            if (userGenres.Genres.Count > 0)
-                BusinessContext.UserGenreBusiness.Insert(userGenres);
+            BusinessContext.UserGenreBusiness.Insert(userGenres);
         }
 
         [HttpDelete]

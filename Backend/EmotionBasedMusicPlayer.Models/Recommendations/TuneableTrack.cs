@@ -49,7 +49,7 @@ namespace EmotionBasedMusicPlayer.Business.Models
         public TuneableTrack(FaceAttributes faceAttributes)
         {
             Random random = new Random();
-            string emotion = faceAttributes.GetPredominantEmotion().ToLower();
+            string emotion = faceAttributes.GetPredominantEmotion();
             switch(emotion)
             {
                 case "neutral":

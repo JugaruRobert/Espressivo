@@ -43,7 +43,7 @@ namespace EmotionBasedMusicPlayer.Business.Utils.recommendation
         public string GetArtistSeeds(string artistName)
         {
             StringBuilder builder = new StringBuilder($"{spotifyAPIBase}/search");
-            builder.Append("?q=" + artistName);
+            builder.Append("?q=" + artistName.ToLower());
             builder.Append("&type=artist");
             return builder.ToString();
         }
