@@ -171,7 +171,7 @@ namespace EmotionBasedMusicPlayer.Business.Core
 
             if (seeds.Count() > 0)
             {
-                foreach(Artist seed in seeds)
+                foreach (Artist seed in seeds)
                 {
                     if (seed.ArtistID == null)
                         genreSeeds.Add(seed.Name.ToLower());

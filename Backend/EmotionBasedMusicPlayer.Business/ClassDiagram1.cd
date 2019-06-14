@@ -1,118 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="EmotionBasedMusicPlayer.Business.ArtistBusiness">
-    <Position X="2.5" Y="3.5" Width="1.5" />
+    <Position X="7" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAkAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>ArtistBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.EmotionRecognitionBusiness">
-    <Position X="6" Y="3.5" Width="1.5" />
+    <Position X="1.5" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="EmotionBasedMusicPlayer.Business.Core.BusinessObject" FixedFromPoint="true">
+      <Path>
+        <Point X="6.125" Y="7.5" />
+        <Point X="6.125" Y="7.377" />
+        <Point X="3.582" Y="7.377" />
+        <Point X="3.582" Y="6.418" />
+        <Point X="3.123" Y="6.418" />
+        <Point X="3.123" Y="5.285" />
+        <Point X="3" Y="5.285" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>EmotionRecognitionBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.GenreBusiness">
-    <Position X="11.25" Y="3.5" Width="1.5" />
+    <Position X="7" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="EmotionBasedMusicPlayer.Business.Core.BusinessObject" FixedFromPoint="true">
+      <Path>
+        <Point X="6.125" Y="7.5" />
+        <Point X="6.125" Y="7.377" />
+        <Point X="7.75" Y="7.377" />
+        <Point X="7.75" Y="6.829" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAQAAkAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>GenreBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.UserArtistBusiness">
-    <Position X="14.75" Y="3.5" Width="1.5" />
+    <Position X="5" Y="4.25" Width="1.75" />
+    <InheritanceLine Type="EmotionBasedMusicPlayer.Business.Core.BusinessObject" FixedFromPoint="true">
+      <Path>
+        <Point X="6.125" Y="7.5" />
+        <Point X="6.125" Y="6.819" />
+        <Point X="5.875" Y="6.819" />
+        <Point X="5.875" Y="6.444" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAACAAAEAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAEAAAAQAAEAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UserArtistBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.UserBusiness">
-    <Position X="4.25" Y="3.5" Width="1.5" />
+    <Position X="3.5" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAEAAAAAAAAAAEAAAAIAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>IAQAAEAAAAAACAAAUAAAIIAAAAEAAAAAIAEAAAAAAAA=</HashCode>
       <FileName>UserBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EmotionBasedMusicPlayer.Business.UserGenreBuisness">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+  <Class Name="EmotionBasedMusicPlayer.Business.UserGenreBusiness">
+    <Position X="5.25" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAACAAAEAAAAAAAAAEAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>UserGenreBuisness.cs</FileName>
+      <HashCode>AAAAAEAAAAAAAAAAEAAAAQAAEAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserGenreBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.YoutubeBusiness">
-    <Position X="13" Y="3.5" Width="1.5" />
+    <Position X="3.25" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="EmotionBasedMusicPlayer.Business.Core.BusinessObject" FixedFromPoint="true">
+      <Path>
+        <Point X="6.125" Y="7.5" />
+        <Point X="6.125" Y="7.377" />
+        <Point X="4" Y="7.377" />
+        <Point X="4" Y="6.127" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>YoutubeBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Core.BusinessContext" BaseTypeListCollapsed="true">
-    <Position X="16.5" Y="0.5" Width="1.75" />
+    <Position X="8.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ARAAAAAEAKAlQQABQEQEAIACAABAACIAAAAAGEAAIgA=</HashCode>
+      <HashCode>ARAgAAAECKAlQQABQEQEAAACAABAACIAAAAAEEAAIgA=</HashCode>
       <FileName>Core\BusinessContext.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Core.BusinessObject">
-    <Position X="8.25" Y="0.5" Width="1.75" />
+    <Position X="5.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Core\BusinessObject.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Orientation="Left" Position="0.132" />
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Core.RecommendationBusiness">
-    <Position X="9.5" Y="3.5" Width="1.5" />
+    <Position X="1.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAIABAEAAAAAAAAAgAQAAAAAAQAAAAAAAQAA=</HashCode>
       <FileName>RecommendationBusiness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Client.EmotionRecognitionClient">
-    <Position X="22.25" Y="0.5" Width="2" />
+    <Position X="7" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\Client\EmotionRecognitionClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Utils.recommendation.RecommendationClient">
-    <Position X="22.25" Y="1.75" Width="2" />
+    <Position X="1.5" Y="6.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\Client\RecommendationClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Utils.recommendation.RecommendationUrlBuilder">
-    <Position X="24.5" Y="2.5" Width="2.25" />
+    <Position X="1.5" Y="7.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABAAAACAAAAAAAAQAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Utils\UrlBuilder\RecommendationUrlBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.Utils.Client.YoutubeClient">
-    <Position X="22.25" Y="3" Width="2" />
+    <Position X="7" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\Client\YoutubeClient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EmotionBasedMusicPlayer.Business.Utils.ImageUtils">
-    <Position X="22.25" Y="4.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Utils\ImageUtils.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="EmotionBasedMusicPlayer.Business.UrlBuilder.EmotionRecognitionUrlBuilder">
-    <Position X="24.5" Y="0.5" Width="2.25" />
+    <Position X="8.75" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\UrlBuilder\EmotionRecognitionUrlBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="System.IDisposable" Collapsed="true">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
