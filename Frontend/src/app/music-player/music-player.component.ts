@@ -189,14 +189,12 @@ export class MusicPlayerComponent{
         return;
 
       var progress = $('#progress')
-
       var timeSpan = $('#currentTime')
-      {
-        var timeWidth = event.pageX - progress.offset().left;
-        timeSpan.css('left', timeWidth - 18 + "px");
-        var timeWidthPercentage = timeWidth / progress.width() * 100;
-        this.currentTime = this.formatTime(timeWidthPercentage);
-      }
+
+      var timeWidth = event.pageX - progress.offset().left;
+      timeSpan.css('left', timeWidth - 18 + "px");
+      var timeWidthPercentage = (timeWidth / progress.width() * 100) / this.step;
+      this.currentTime = this.formatTime(timeWidthPercentage);
 
       if(progress.is(':active'))
       {
