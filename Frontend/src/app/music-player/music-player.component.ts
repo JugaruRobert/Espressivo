@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MatSliderChange } from '@angular/material';
 import { AnimationBuilder, animate, style } from '@angular/animations';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { Observable } from 'rxjs/internal/Observable';
+import { interval } from 'rxjs';
+import { AppService, ProgressTimeout } from '../shared/service/AppService';
 
 @Component({
   selector: 'app-music-player',
@@ -20,7 +24,6 @@ export class MusicPlayerComponent{
     private looping : boolean = false;
     private totalDuration: number = 0;
     private curentDuration: number = 0;
-    private progressTimeout: any;
     private videoStarted:boolean = false;
     private step:number = 1;
     public currentTime: string = "00:00";
@@ -32,14 +35,25 @@ export class MusicPlayerComponent{
     private player : any;
     private ytEvent : any;
 
-    constructor(){}
+    constructor(private timeoutManager:ProgressTimeout){
+      this.timeoutManager.unsubscribe();
+    }
+
+    clearTimeout(){
+      
+    }
+
+    ngOnInit() {
+      this.timeoutManager.unsubscribe();
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
       if(changes['videoId']) {
+        this.timeoutManager.unsubscribe();
         if(this.player && this.videoId)
         {
           this.videoStarted = false;
-          clearInterval(this.progressTimeout);
+          this.timeoutManager.unsubscribe();
           this.player.loadVideoById(this.videoId);
         }
       }
@@ -49,12 +63,13 @@ export class MusicPlayerComponent{
       this.ytEvent = event.data;
       if (event.data == YT.PlayerState.UNSTARTED) {
         this.videoStarted = false;
-        clearInterval(this.progressTimeout);
+        this.timeoutManager.unsubscribe();
         $("#progress-bar").css("width","0%");
       }
       else if (event.data == YT.PlayerState.PLAYING) {
         if(this.videoStarted == false)
         {
+          this.timeoutManager.unsubscribe();
           this.videoStarted = true;
           this.totalDuration = this.player.getDuration();
           this.step = (100/this.totalDuration);
@@ -63,7 +78,7 @@ export class MusicPlayerComponent{
       }
       else if(event.data == YT.PlayerState.ENDED){
       {
-          clearInterval(this.progressTimeout);
+          this.timeoutManager.unsubscribe();
           this.videoStarted = false;
 
           if(this.looping == false)
@@ -89,6 +104,7 @@ export class MusicPlayerComponent{
     savePlayer(player) {
       this.player = player;
       this.setVolume(50);
+      this.timeoutManager.unsubscribe();
     }
 
     setVolumeMouseMove(event:any){
@@ -123,17 +139,23 @@ export class MusicPlayerComponent{
     }
     
     configurePlay(){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       $("#playBtn").hide();
       $("#pauseBtn").show();
       this.isPlaying = true;
-      clearInterval(this.progressTimeout);
-      this.progressTimeout = setInterval(() =>{
-        var previousWidth = $("#progress-bar").width() / $('#progress-bar').parent().width() * 100;
-        var currentWidth = previousWidth + this.step + "%"
-        $("#progress-bar").css("width",currentWidth);
-      },1000);
+      this.timeoutManager.unsubscribe();
+
+      if(!this.timeoutManager.getTimeout())
+      {
+        this.timeoutManager.subscribe(()=>{        
+          var previousWidth = $("#progress-bar").width() / $('#progress-bar').parent().width() * 100;
+          var currentWidth = previousWidth + this.step + "%"
+          $("#progress-bar").css("width",currentWidth);
+        });
+      }
     }
 
     pauseVideo() {
@@ -142,12 +164,14 @@ export class MusicPlayerComponent{
     }
 
     configurePause(){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       $("#pauseBtn").hide();
       $("#playBtn").show();
       this.isPlaying = false;
-      clearInterval(this.progressTimeout);
+      this.timeoutManager.unsubscribe();
     }
     
     stopVideo() {
@@ -164,8 +188,10 @@ export class MusicPlayerComponent{
     }
 
     setLoop(){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       this.looping = !this.looping;
       this.player.setLoop(this.looping);
       if(this.looping)
@@ -175,8 +201,10 @@ export class MusicPlayerComponent{
     }
 
     setSeekToMouseClick(event:any){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       var progress = $('#progress');
       var progressBar = $("#progress-bar");
       progressBar.css('width', event.pageX - progress.offset().left);
@@ -185,8 +213,10 @@ export class MusicPlayerComponent{
     }
 
     setSeekToMouseMove(event:any){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
 
       var progress = $('#progress')
       var timeSpan = $('#currentTime')
@@ -211,8 +241,10 @@ export class MusicPlayerComponent{
     }
 
     muteVideo(){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       $("#volume").toggleClass('fa-volume-up fa-volume-off');
       if(this.player.isMuted())
         this.player.unMute();

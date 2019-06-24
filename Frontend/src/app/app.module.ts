@@ -18,7 +18,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { JwtInterceptor } from './shared/library/jwtInterceptor';
 import { ErrorInterceptor, HTTPStatus } from './shared/library/errorInterceptor';
-import { AppService } from './shared/service/AppService';
+import { AppService, ProgressTimeout } from './shared/service/AppService';
 import { ApiUrlBuilder } from './shared/service/ApiUrlBuilder';
 import { FirstLoginInformationComponent } from './first-login-information/first-login-information.component';
 import { ConfigurationPageComponent } from './configuration-page/configuration-page.component';
@@ -65,6 +65,7 @@ import {WebcamModule} from 'ngx-webcam';
     AppService,
     ApiUrlBuilder,
     HTTPStatus,
+    ProgressTimeout,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

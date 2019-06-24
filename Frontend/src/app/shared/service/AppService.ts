@@ -1,15 +1,38 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiUrlBuilder } from './ApiUrlBuilder';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, interval } from 'rxjs';
 import { User } from '../models/User';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+@Injectable()
+export class ProgressTimeout{
+    private progressTimeout:Subscription = null;
+
+    getTimeout():Subscription{
+        return this.progressTimeout;
+    }
+
+    setTimeout(timeout:Subscription){
+        this.progressTimeout = timeout;
+    }
+
+    subscribe(callback:any){
+        if(!this.progressTimeout)
+            this.progressTimeout = interval(1000).subscribe(()=>{callback();});
+    }
+
+    unsubscribe(){
+        if(this.progressTimeout)
+            this.progressTimeout.unsubscribe();
+        this.progressTimeout = null;
+    }
+}
 
 @Injectable()
 export class AppService {
     private JWT: string;
-
+   
     constructor(
         private http: HttpClient,
         private urlBuilder: ApiUrlBuilder
