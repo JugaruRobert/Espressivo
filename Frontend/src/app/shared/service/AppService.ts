@@ -5,27 +5,31 @@ import { Observable, Subscription, interval } from 'rxjs';
 import { User } from '../models/User';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class ProgressTimeout{
-    private progressTimeout:Subscription = null;
-
     getTimeout():Subscription{
-        return this.progressTimeout;
+        return environment.sliderTimeout;
     }
 
     setTimeout(timeout:Subscription){
-        this.progressTimeout = timeout;
+        environment.sliderTimeout = timeout;
     }
 
     subscribe(callback:any){
-        if(!this.progressTimeout)
-            this.progressTimeout = interval(1000).subscribe(()=>{callback();});
+        if(!environment.sliderTimeout)
+        {
+            environment.attached = true;
+            environment.sliderTimeout = interval(1000).subscribe(()=>{callback();});
+        }
     }
 
     unsubscribe(){
-        if(this.progressTimeout)
-            this.progressTimeout.unsubscribe();
-        this.progressTimeout = null;
+        if(environment.sliderTimeout)
+            environment.sliderTimeout.unsubscribe();
+        environment.sliderTimeout= null;
+        environment.attached = false;
     }
 }
 

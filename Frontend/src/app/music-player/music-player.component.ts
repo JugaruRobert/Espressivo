@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable } from 'rxjs/internal/Observable';
 import { interval } from 'rxjs';
 import { AppService, ProgressTimeout } from '../shared/service/AppService';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-music-player',
@@ -67,14 +68,20 @@ export class MusicPlayerComponent{
         $("#progress-bar").css("width","0%");
       }
       else if (event.data == YT.PlayerState.PLAYING) {
+        environment.isVideoPaused = false;
         if(this.videoStarted == false)
         {
+          environment.currentSeconds = 0;
           this.timeoutManager.unsubscribe();
           this.videoStarted = true;
           this.totalDuration = this.player.getDuration();
           this.step = (100/this.totalDuration);
           this.playVideo();
         }
+      }
+      else if (event.data == YT.PlayerState.PAUSED) {
+          this.timeoutManager.unsubscribe();
+          environment.isVideoPaused = true;
       }
       else if(event.data == YT.PlayerState.ENDED){
       {
@@ -95,6 +102,10 @@ export class MusicPlayerComponent{
     }
 
     playAudio(){
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
+        return;
+      }
       if(this.isPlaying)
         this.pauseVideo();
       else
@@ -108,8 +119,10 @@ export class MusicPlayerComponent{
     }
 
     setVolumeMouseMove(event:any){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       var volumeLevel = $('#volumeLevel')
       if(volumeLevel.is(':active'))
       {
@@ -120,8 +133,10 @@ export class MusicPlayerComponent{
     }
 
     setVolumeMouseClick(event:any){
-      if(!this.videoStarted)
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
         return;
+      }
       if(this.player.isMuted())
       {
         $("#volume").toggleClass('fa-volume-up fa-volume-off');
@@ -134,12 +149,18 @@ export class MusicPlayerComponent{
     }
 
     playVideo() {
+      if(!this.videoStarted && this.looping == false) {
+        this.timeoutManager.unsubscribe();
+        return;
+      }
+      environment.currentSeconds = 0;
+      environment.isVideoPaused = false;
       this.configurePlay();
       this.player.playVideo();
     }
     
     configurePlay(){
-      if(!this.videoStarted) {
+      if(!this.videoStarted && this.looping == false) {
         this.timeoutManager.unsubscribe();
         return;
       }
@@ -147,18 +168,37 @@ export class MusicPlayerComponent{
       $("#pauseBtn").show();
       this.isPlaying = true;
       this.timeoutManager.unsubscribe();
+      environment.currentSeconds = 0;
 
-      if(!this.timeoutManager.getTimeout())
+      if(!this.timeoutManager.getTimeout() && environment.attached == false)
       {
-        this.timeoutManager.subscribe(()=>{        
-          var previousWidth = $("#progress-bar").width() / $('#progress-bar').parent().width() * 100;
-          var currentWidth = previousWidth + this.step + "%"
-          $("#progress-bar").css("width",currentWidth);
+        this.timeoutManager.subscribe(()=>{   
+          if(environment.isVideoPaused == true)
+          {
+            this.timeoutManager.unsubscribe();
+          }
+          else if(environment.currentSeconds != 0 &&
+            (environment.currentSeconds + 1) % 60 != new Date().getUTCSeconds())
+          {
+            this.timeoutManager.unsubscribe();
+          }
+          else     
+          {
+            var previousWidth = $("#progress-bar").width() / $('#progress-bar').parent().width() * 100;
+            var currentWidth = previousWidth + this.step + "%";
+            $("#progress-bar").css("width",currentWidth);
+            environment.currentSeconds = new Date().getUTCSeconds();
+          }
         });
       }
     }
 
     pauseVideo() {
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
+        return;
+      }
+      environment.isVideoPaused = true;
       this.configurePause();
       this.player.pauseVideo();
     }
@@ -175,6 +215,10 @@ export class MusicPlayerComponent{
     }
     
     stopVideo() {
+      if(!this.videoStarted) {
+        this.timeoutManager.unsubscribe();
+        return;
+      }
       this.configurePause();
       this.player.stopVideo();
     }
@@ -254,6 +298,10 @@ export class MusicPlayerComponent{
 
     setVolume(volume: number)
     {
+      if(volume <= 2 && $("#volume").hasClass("fa-volume-up"))
+        $("#volume").toggleClass('fa-volume-up fa-volume-off');
+      else if(volume > 0 && $("#volume").hasClass("fa-volume-off"))
+        $("#volume").toggleClass('fa-volume-up fa-volume-off');
       this.player.setVolume(volume);
     }
 

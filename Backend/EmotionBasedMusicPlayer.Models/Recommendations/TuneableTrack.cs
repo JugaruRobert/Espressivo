@@ -61,10 +61,10 @@ namespace EmotionBasedMusicPlayer.Business.Models
                     Tempo = random.Next(95, 116);
                     break;
                 case "happiness":
-                    Valence = random.NextDouble() * 0.1 + 0.9;
-                    Energy = random.NextDouble() * 0.1 + 0.9;
-                    Danceability = random.NextDouble() * 0.3 + 0.7;
-                    Loudness = random.NextDouble() * 0.6 + 0.4;
+                    Valence = 1;
+                    Energy = 1;
+                    Danceability = 1;
+                    Loudness = 1;
                     Mode = 1;
                     Tempo = random.Next(120, 201);
                     break;
@@ -101,10 +101,10 @@ namespace EmotionBasedMusicPlayer.Business.Models
                     Tempo = random.Next(85, 131);
                     break;
                 case "sadness":
-                    Valence = random.NextDouble() * 0.15 + 0;
-                    Energy = random.NextDouble() * 0.15 + 0;
-                    Danceability = random.NextDouble() * 0.3 + 0.2;
-                    Loudness = random.NextDouble() * 0.4 + 0.3;
+                    Valence = 0;
+                    Energy = 0;
+                    Danceability = 0;
+                    Loudness = 0;
                     Mode = 0;
                     Tempo = random.Next(80, 111);
                     break;
